@@ -64,7 +64,7 @@ instances:
     flavor:
 
   - name: invokers
-    num_instances: 2
+    num_instances: 1
     flavor:
 
   - name: db

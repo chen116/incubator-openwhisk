@@ -14,9 +14,27 @@
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg
 - name:    Add Docker APT repository
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    repo: deb [arch=$(uname -m | sed -e 's/x86_64/amd64/g')] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
+    # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
 - name:    Install Docker
   apt:     name=docker-ce
+- name: configure docker daemon js
+  template:
+    src: daemon.js
+    dest: "/etc/docker/daemon.js"
+  become: true
+# - name: replace line
+#     lineinfile: 
+#       dest: /lib/systemd/system/docker.service
+#       regexp: '^(.*)option domain-name-servers(.*)$' 
+#       line: 'option domain-name-servers 10.116.184.1,10.116.144.1,10.116.136.1;'
+#       backrefs: yes
+
+
+
+# systemctl daemon-reload
+# docker run -d -p 5000:5000 --restart=always --name registry registry:2
+# service docker restart
 # - name: add docker repo
 #   apt_repository:
 #     repo: deb https://apt.dockerproject.org/repo ubuntu-trusty main
@@ -31,11 +49,11 @@
 #     force: yes
 #   become: true
 
-- name: configure docker
-  template:
-    src: docker.j2
-    dest: "/etc/default/docker"
-  become: true
+# - name: configure docker
+#   template:
+#     src: docker.j2
+#     dest: "/etc/default/docker"
+#   become: true
 
 - name: add user to docker group
   user:
