@@ -62,7 +62,6 @@
     append: true
   become: true
 - name: reload systemd
-  sudo: yes
   command: systemctl daemon-reload
 - name: restart docker service
   service:
