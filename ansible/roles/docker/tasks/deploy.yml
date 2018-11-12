@@ -20,8 +20,8 @@
   apt:     name=docker-ce
 - name: configure docker daemon js
   template:
-    src: daemon.js
-    dest: "/etc/docker/daemon.js"
+    src: daemon.json
+    dest: "/etc/docker/daemon.json"
   become: true
 # - name: replace line
 #     lineinfile: 
