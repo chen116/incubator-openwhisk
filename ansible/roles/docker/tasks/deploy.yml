@@ -23,7 +23,7 @@
 #     src: daemon.json
 #     dest: "/etc/docker/daemon.json"
 #   become: true
-- name: replace execstart line
+- name: replace ExecStart line
   lineinfile: 
     dest: /lib/systemd/system/docker.service
     regexp: "^(.*)ExecStart=/usr/bin/dockerd(.*)$"
