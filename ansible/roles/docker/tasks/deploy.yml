@@ -20,7 +20,7 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
   when: ansible_architecture == "x86_64"
 
-- name: add docker APT repository amrf
+- name: add docker APT repository amrhf
   apt_repository:
     repo: deb [arch=armhf] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
   when: ansible_architecture == "armhf"
