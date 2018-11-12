@@ -2,7 +2,8 @@
 # license agreements; and to You under the Apache License, Version 2.0.
 ---
 # This playbook prepares ansible configuration
-
+- name:    Install p2
+  apt:     name=python-minimal
 - hosts: localhost
   tasks:
   # Generate hosts files
