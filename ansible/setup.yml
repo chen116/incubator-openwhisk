@@ -5,8 +5,6 @@
 
 - hosts: localhost
   tasks:
-  - name:    Install p2
-    apt:     name=python-minimal
   # Generate hosts files
   - name: gen hosts if 'local' env is used
     local_action: template src="{{playbook_dir}}/environments/local/hosts.j2.ini" dest="{{ playbook_dir }}/environments/local/hosts"
