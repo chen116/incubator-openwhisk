@@ -49,9 +49,9 @@
 
     - name: restart docker service
       service:
-      name: docker
-      state: restarted
-    become: true
+        name: docker
+        state: restarted
+      become: true
 
   when: ansible_distribution_release == "xenial"
 
