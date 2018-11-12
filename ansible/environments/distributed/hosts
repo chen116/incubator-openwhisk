@@ -29,4 +29,4 @@ v6              ansible_host=v6
 
 
 [db]
-v4               ansible_host=v4
+v5               ansible_host=v5
