@@ -14,13 +14,16 @@
 - name: add docker GPG key
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg
 
-- name: Get DEB architecture
-  shell: dpkg --print-architecture
-  register: deb_architecture
 
-- name: add Docker APT repository
+- name: add docker APT repository amd64
   apt_repository:
-    repo: deb [arch=qqq] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+  when: ansible_architecture == "x86_64"
+
+- name: add docker APT repository amrf
+  apt_repository:
+    repo: deb [arch=armhf] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+  when: ansible_architecture == "armhf"
 
 - name: install docker-ce
   update_cache: yes
