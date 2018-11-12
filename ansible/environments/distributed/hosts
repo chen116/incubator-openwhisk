@@ -7,7 +7,7 @@ ansible ansible_connection=local
 v2              ansible_host=v2
 
 [edge]
-v3              ansible_host=v3
+v2              ansible_host=v2
 
 [apigateway:children]
 edge
@@ -16,17 +16,17 @@ edge
 edge
 
 [controllers]
-v4              ansible_host=v4
+v2              ansible_host=v2
 
 [kafkas]
-v6              ansible_host=v6
+v3              ansible_host=v3
 
 [zookeepers:children]
 kafkas
 
 [invokers]
-v6              ansible_host=v6
+v3              ansible_host=v3
 
 
 [db]
-v5               ansible_host=v5
+v3               ansible_host=v3
