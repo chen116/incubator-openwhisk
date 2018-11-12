@@ -24,11 +24,11 @@
 #     dest: "/etc/docker/daemon.json"
 #   become: true
 - name: replace execstart line
-    lineinfile: 
-      dest: /lib/systemd/system/docker.service
-      regexp: '^(.*)ExecStart=/usr/bin/dockerd(.*)$' 
-      line: 'ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:{{ docker.port }} -H unix:///var/run/docker.sock -s {{ docker.storagedriver }} --insecure-registry {{ groups['registry']|first }}:5000'
-      backrefs: yes
+  lineinfile: 
+    dest: /lib/systemd/system/docker.service
+    regexp: '^(.*)ExecStart=/usr/bin/dockerd(.*)$' 
+    line: 'ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:{{ docker.port }} -H unix:///var/run/docker.sock -s {{ docker.storagedriver }} --insecure-registry {{ groups['registry']|first }}:5000'
+    backrefs: yes
 
 
 
