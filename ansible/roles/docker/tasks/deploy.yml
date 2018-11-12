@@ -4,7 +4,7 @@
 # This role will install Docker using apt.
 
 - name: Install docker xenial
- block:
+block:
   - name: install docker-ce prerequisites
     apt: name={{item}} update_cache=yes
     with_items:
@@ -53,7 +53,9 @@
       state: restarted
     become: true
 
- when: ansible_distribution_release == "xenial"
+when: ansible_distribution_release == "xenial"
+
+
 
 
 # - name: install docker-ce prerequisites
