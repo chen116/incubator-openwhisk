@@ -2,8 +2,7 @@
 # license agreements; and to You under the Apache License, Version 2.0.
 ---
 # This role will install Docker using apt.
-- name:    Install p2
-  apt:     name=python-minimal
+
 - name:    Install prerequisites
   apt:     name={{item}} update_cache=yes
   with_items:
