@@ -18,7 +18,7 @@
     # repo: deb [arch=$(uname -m | sed -e 's/x86_64/amd64/g')] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
 - name:    Install Docker
   apt:     name=docker-ce
-- name: configure docker daemon js
+- name: configure docker daemon json
   template:
     src: daemon.json
     dest: "/etc/docker/daemon.json"
@@ -55,15 +55,15 @@
 #     dest: "/etc/default/docker"
 #   become: true
 
-- name: add user to docker group
-  user:
-    name: "{{docker.user|default(ansible_user_id)}}"
-    groups: docker
-    append: true
-  become: true
+# - name: add user to docker group
+#   user:
+#     name: "{{docker.user|default(ansible_user_id)}}"
+#     groups: docker
+#     append: true
+#   become: true
 
-- name: restart docker service
-  service:
-    name: docker
-    state: restarted
-  become: true
+# - name: restart docker service
+#   service:
+#     name: docker
+#     state: restarted
+#   become: true
