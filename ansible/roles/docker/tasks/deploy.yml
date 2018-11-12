@@ -48,10 +48,10 @@
       command: systemctl daemon-reload
 
 
-      - service:
-        name: docker
-        state: restarted
-      become: true
+    - service:
+      name: docker
+      state: restarted
+    become: true
 
   when: ansible_distribution_release == "xenial"
 
