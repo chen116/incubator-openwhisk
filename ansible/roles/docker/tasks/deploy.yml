@@ -18,17 +18,17 @@
     # repo: deb [arch=$(uname -m | sed -e 's/x86_64/amd64/g')] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
 - name:    Install Docker
   apt:     name=docker-ce
-- name: configure docker daemon json
-  template:
-    src: daemon.json
-    dest: "/etc/docker/daemon.json"
-  become: true
-# - name: replace line
-#     lineinfile: 
-#       dest: /lib/systemd/system/docker.service
-#       regexp: '^(.*)option domain-name-servers(.*)$' 
-#       line: 'option domain-name-servers 10.116.184.1,10.116.144.1,10.116.136.1;'
-#       backrefs: yes
+# - name: configure docker daemon json
+#   template:
+#     src: daemon.json
+#     dest: "/etc/docker/daemon.json"
+#   become: true
+- name: replace execstart line
+    lineinfile: 
+      dest: /lib/systemd/system/docker.service
+      regexp: '^(.*)ExecStart=/usr/bin/dockerd(.*)$' 
+      line: 'ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:{{ docker.port }} -H unix:///var/run/docker.sock -s {{ docker.storagedriver }} --insecure-registry {{ groups['registry']|first }}:5000'
+      backrefs: yes
 
 
 
@@ -55,15 +55,17 @@
 #     dest: "/etc/default/docker"
 #   become: true
 
-# - name: add user to docker group
-#   user:
-#     name: "{{docker.user|default(ansible_user_id)}}"
-#     groups: docker
-#     append: true
-#   become: true
-
-# - name: restart docker service
-#   service:
-#     name: docker
-#     state: restarted
-#   become: true
+- name: add user to docker group
+  user:
+    name: "{{docker.user|default(ansible_user_id)}}"
+    groups: docker
+    append: true
+  become: true
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
+- name: restart docker service
+  service:
+    name: docker
+    state: restarted
+  become: true
