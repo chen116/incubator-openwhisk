@@ -290,8 +290,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     activations.getOrElseUpdate(
       msg.activationId, {
         val timeoutHandler = actorSystem.scheduler.scheduleOnce(timeout) {
-          processCompletion(msg.activationId, msg.transid, forced = true, invoker = instance, meow_duration = 99)
-          // processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
+          // processCompletion(msg.activationId, msg.transid, forced = true, invoker = instance, meow_duration = 99)
+          processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
         }
 
         // please note: timeoutHandler.cancel must be called on all non-timeout paths, e.g. Success
@@ -362,10 +362,10 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         processCompletion(
           m.activationId,
           m.transid,
-          forced = false,//isSystemError = m.isSystemError,
-          invoker = m.invoker, meow_duration = m.meow_duration)
-          // forced = false,isSystemError = m.isSystemError,
-          // invoker = m.invoker)
+          // forced = false,//isSystemError = m.isSystemError,
+          // invoker = m.invoker, meow_duration = m.meow_duration)
+          forced = false,isSystemError = m.isSystemError,
+          invoker = m.invoker)
         activationFeed ! MessageFeed.Processed
 
       case Success(m: ResultMessage) =>
@@ -398,15 +398,15 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   /** Process the completion ack and update the state */
   private def processCompletion(aid: ActivationId,
                                 tid: TransactionId,
-                                forced: Boolean,//isSystemError: Boolean,
-                                invoker: InvokerInstanceId,meow_duration: Long ): Unit = {
+                                forced: Boolean,isSystemError: Boolean,
+                                invoker: InvokerInstanceId ): Unit = {
 
     val invocationResult = if (forced) {
       InvocationFinishedResult.Timeout
     } else {
       // If the response contains a system error, report that, otherwise report Success
       // Left generally is considered a Success, since that could be a message not fitting into Kafka
-      if (false) {
+      if (isSystemError) {
         InvocationFinishedResult.SystemError
       } else {
         InvocationFinishedResult.Success
