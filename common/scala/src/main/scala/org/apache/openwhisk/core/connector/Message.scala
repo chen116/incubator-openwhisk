@@ -21,7 +21,7 @@ import scala.util.Try
 import spray.json._
 import org.apache.openwhisk.common.TransactionId
 import org.apache.openwhisk.core.entity._
-import scala.collection.JavaConverters._
+
 /** Basic trait for messages that are sent on a message bus connector. */
 trait Message {
 
@@ -89,7 +89,7 @@ abstract class AcknowledegmentMessage(private val tid: TransactionId) extends Me
 case class CompletionMessage(override val transid: TransactionId,
                              activationId: ActivationId,
                              isSystemError: Boolean,
-                             invoker: InvokerInstanceId,meow_duration: ActivationId )
+                             meow_duration: ActivationId )
     extends AcknowledegmentMessage(transid) {
 
   override def toString = {
