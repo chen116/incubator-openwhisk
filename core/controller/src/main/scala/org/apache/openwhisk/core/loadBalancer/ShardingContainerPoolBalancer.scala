@@ -269,7 +269,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
                               instance: InvokerInstanceId): ActivationEntry = {
 
 
-    meow_exectime.getOrElseUpdate(action.fullyQualifiedName(false).asString,{0})
+    meow_exectime.getOrElseUpdate(msg.action.asString,{0})
 
     totalActivations.increment()
     totalActivationMemory.add(action.limits.memory.megabytes)
@@ -430,6 +430,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         logging.info(this, s"${if (!forced) "received" else "forced"} completion ack for woof '$aid'")(tid)
 
+        meow_exectime("")
         meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"$keyy $valuee")} )    
 
 
