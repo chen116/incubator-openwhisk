@@ -88,7 +88,7 @@ abstract class AcknowledegmentMessage(private val tid: TransactionId) extends Me
  */
 case class CompletionMessage(override val transid: TransactionId,
                              activationId: ActivationId,isSystemError: Boolean,
-                             invoker: InvokerInstanceId )
+                             invoker: InvokerInstanceId , meow_duration: Int)
     extends AcknowledegmentMessage(transid) {
 
   override def toString = {
