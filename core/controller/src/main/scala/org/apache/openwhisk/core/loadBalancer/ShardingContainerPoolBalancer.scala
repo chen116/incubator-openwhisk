@@ -430,7 +430,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         logging.info(this, s"${if (!forced) "received" else "forced"} completion ack for woof '$aid'")(tid)
 
-        meow_exectime("")
+        // meow_exectime("")
         meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"$keyy $valuee")} )    
 
 
