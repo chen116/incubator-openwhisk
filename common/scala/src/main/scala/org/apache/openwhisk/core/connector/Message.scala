@@ -88,7 +88,7 @@ abstract class AcknowledegmentMessage(private val tid: TransactionId) extends Me
  */
 case class CompletionMessage(override val transid: TransactionId,
                              activationId: ActivationId,isSystemError: Boolean,
-                             invoker: InvokerInstanceId , meow_duration: Int)
+                             invoker: InvokerInstanceId )
     extends AcknowledegmentMessage(transid) {
 
   override def toString = {
@@ -107,7 +107,7 @@ object CompletionMessage extends DefaultJsonProtocol {
  * When adding fields, the serdes of the companion object must be updated also.
  * The whisk activation field will have its logs stripped.
  */
-case class ResultMessage(override val transid: TransactionId, response: Either[ActivationId, WhiskActivation])
+case class ResultMessage(override val transid: TransactionId, response: Either[ActivationId, WhiskActivation], meow_duration: Int)
     extends AcknowledegmentMessage(transid) {
 
   override def toString = {
