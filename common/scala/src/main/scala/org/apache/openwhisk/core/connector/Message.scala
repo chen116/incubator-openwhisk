@@ -87,8 +87,7 @@ abstract class AcknowledegmentMessage(private val tid: TransactionId) extends Me
  * current action, is free again (after log collection)
  */
 case class CompletionMessage(override val transid: TransactionId,
-                             activationId: ActivationId,
-                             isSystemError: Boolean,
+                             activationId: ActivationId,//isSystemError: Boolean,
                              invoker: InvokerInstanceId,meow_duration: ActivationId )
     extends AcknowledegmentMessage(transid) {
 
