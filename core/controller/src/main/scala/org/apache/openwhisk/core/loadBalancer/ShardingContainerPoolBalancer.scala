@@ -163,6 +163,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   private val activationsPerNamespace = TrieMap[UUID, LongAdder]()
   private val totalActivations = new LongAdder()
   private val totalActivationMemory = new LongAdder()
+  private val meow_exectime = TrieMap[String,int]()
 
   /** State needed for scheduling. */
   private val schedulingState = ShardingContainerPoolBalancerState()(lbConfig)
@@ -266,6 +267,12 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   private def setupActivation(msg: ActivationMessage,
                               action: ExecutableWhiskActionMetaData,
                               instance: InvokerInstanceId): ActivationEntry = {
+
+    map.get(key) match {
+  case None => map.put(key, defaultValue)
+  case Some(v) => map(key) = updatedValue
+}
+    meow_exectime.getOrElseUpdate(action.fullyQualifiedName(false).asString,0)
 
     totalActivations.increment()
     totalActivationMemory.add(action.limits.memory.megabytes)
@@ -425,6 +432,10 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         }
 
         logging.info(this, s"${if (!forced) "received" else "forced"} completion ack for woof '$aid'")(tid)
+
+        meow_exectime.foreach(case (keyy, valuee) => logging.info(this,s"$keyy $valuee") )    
+
+
         // Active acks that are received here are strictly from user actions - health actions are not part of
         // the load balancer's activation map. Inform the invoker pool supervisor of the user action completion.
         invokerPool ! InvocationFinishedMessage(invoker, invocationResult)
