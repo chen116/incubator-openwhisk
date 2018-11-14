@@ -82,6 +82,25 @@ abstract class AcknowledegmentMessage(private val tid: TransactionId) extends Me
   }
 }
 
+// /**
+//  * This message is sent from the invoker to the controller, after the slot of an invoker that has been used by the
+//  * current action, is free again (after log collection)
+//  */
+// case class CompletionMessage(override val transid: TransactionId,
+//                              activationId: ActivationId,
+//                              isSystemError: Boolean,
+//                              invoker: InvokerInstanceId,meow_duration: ActivationId )
+//     extends AcknowledegmentMessage(transid) {
+
+//   override def toString = {
+//     activationId.asString
+//   }
+// }
+
+object CompletionMessage extends DefaultJsonProtocol {
+  def parse(msg: String): Try[CompletionMessage] = Try(serdes.read(msg.parseJson))
+  implicit val serdes = jsonFormat4(CompletionMessage.apply)
+}
 /**
  * This message is sent from the invoker to the controller, after the slot of an invoker that has been used by the
  * current action, is free again (after log collection)
@@ -96,12 +115,6 @@ case class CompletionMessage(override val transid: TransactionId,
     activationId.asString
   }
 }
-
-object CompletionMessage extends DefaultJsonProtocol {
-  def parse(msg: String): Try[CompletionMessage] = Try(serdes.read(msg.parseJson))
-  implicit val serdes = jsonFormat4(CompletionMessage.apply)
-}
-
 /**
  * That message will be sent from the invoker to the controller after action completion if the user wants to have
  * the result immediately (blocking activation).
