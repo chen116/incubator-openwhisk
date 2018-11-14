@@ -52,6 +52,7 @@ protected[core] case class FullyQualifiedEntityName(path: EntityPath, name: Enti
   def namespace: EntityName = path.root
   def qualifiedNameWithLeadingSlash: String = EntityPath.PATHSEP + qualifiedName
   def asString = path.addPath(name) + version.map("@" + _.toString).getOrElse("")
+  def meow_asString = name.asString
 
   override def size = qualifiedName.sizeInBytes
   override def toString = asString

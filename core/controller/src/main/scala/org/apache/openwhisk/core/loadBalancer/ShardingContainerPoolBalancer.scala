@@ -269,7 +269,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
                               instance: InvokerInstanceId): ActivationEntry = {
 
 
-    meow_exectime.getOrElseUpdate(msg.action.asString,{0})
+    meow_exectime.getOrElseUpdate(msg.action.meow_asString,{0})
 
     totalActivations.increment()
     totalActivationMemory.add(action.limits.memory.megabytes)
