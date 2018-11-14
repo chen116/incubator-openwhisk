@@ -393,6 +393,9 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
       entry.promise.trySuccess(response)
     }
     logging.info(this, s"received result ack for '$aid'")(tid)
+              // meow_exectime("")
+        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee")} )    
+        meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")} ) 
   }
 
   /** Process the completion ack and update the state */
@@ -433,9 +436,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         logging.info(this, s"${if (!forced) "received" else "forced"}  completion ack for woof '$aid'")(tid)
 
-        // meow_exectime("")
-        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime $keyy $valuee")} )    
-        meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action $keyy $valuee")} )    
+   
 
 
         // Active acks that are received here are strictly from user actions - health actions are not part of

@@ -107,7 +107,7 @@ object CompletionMessage extends DefaultJsonProtocol {
  * When adding fields, the serdes of the companion object must be updated also.
  * The whisk activation field will have its logs stripped.
  */
-case class ResultMessage(override val transid: TransactionId, response: Either[ActivationId, WhiskActivation], meow_duration: Int)
+case class ResultMessage(override val transid: TransactionId, response: Either[ActivationId, WhiskActivation])
     extends AcknowledegmentMessage(transid) {
 
   override def toString = {
