@@ -125,8 +125,8 @@ class InvokerReactive(
       val msg = if (isSlotFree) {
         val aid = res.fold(identity, _.activationId)
         val isWhiskSystemError = res.fold(_ => false, _.response.isWhiskError)
-        // CompletionMessage(transid, aid, activationResult.duration, instance)
-        CompletionMessage(transid, aid, isWhiskSystemError, instance)
+        CompletionMessage(transid, aid, activationResult.duration, instance)
+        // CompletionMessage(transid, aid, isWhiskSystemError, instance)
       } else {
         ResultMessage(transid, res)
       }
