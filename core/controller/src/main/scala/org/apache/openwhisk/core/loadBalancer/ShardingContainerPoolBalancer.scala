@@ -363,7 +363,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           m.transid,
           forced = false,
           isSystemError = m.isSystemError,
-          invoker = m.invoker, meow_duration = m.duration)
+          invoker = m.invoker, meow_duration = m.meow_duration)
         activationFeed ! MessageFeed.Processed
 
       case Success(m: ResultMessage) =>
