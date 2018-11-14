@@ -290,8 +290,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     activations.getOrElseUpdate(
       msg.activationId, {
         val timeoutHandler = actorSystem.scheduler.scheduleOnce(timeout) {
-          processCompletion(msg.activationId, msg.transid, forced = true, meow_duration = 99, invoker = instance)
-          // processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
+          // processCompletion(msg.activationId, msg.transid, forced = true, meow_duration = 99, invoker = instance)
+          processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
         }
 
         // please note: timeoutHandler.cancel must be called on all non-timeout paths, e.g. Success
@@ -362,8 +362,10 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         processCompletion(
           m.activationId,
           m.transid,
-          forced = false,//isSystemError = m.isSystemError,
-          invoker = m.invoker, meow_duration = m.meow_duration)
+          // forced = false,//isSystemError = m.isSystemError,
+          // invoker = m.invoker, meow_duration = m.meow_duration)
+          forced = false,isSystemError = m.isSystemError,
+          invoker = m.invoker)
         activationFeed ! MessageFeed.Processed
 
       case Success(m: ResultMessage) =>
@@ -396,8 +398,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   /** Process the completion ack and update the state */
   private def processCompletion(aid: ActivationId,
                                 tid: TransactionId,
-                                forced: Boolean,//isSystemError: Boolean,
-                                invoker: InvokerInstanceId, meow_duration: Long ): Unit = {
+                                forced: Boolean,isSystemError: Boolean,
+                                invoker: InvokerInstanceId ): Unit = {
 
     val invocationResult = if (forced) {
       InvocationFinishedResult.Timeout
@@ -429,7 +431,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           entry.promise.tryFailure(new Throwable("no completion ack received"))
         }
 
-        logging.info(this, s"${if (!forced) "received" else "forced"} $meow_duration completion ack for woof '$aid'")(tid)
+        logging.info(this, s"${if (!forced) "received" else "forced"}  completion ack for woof '$aid'")(tid)
 
         // meow_exectime("")
         meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime $keyy $valuee")} )    
