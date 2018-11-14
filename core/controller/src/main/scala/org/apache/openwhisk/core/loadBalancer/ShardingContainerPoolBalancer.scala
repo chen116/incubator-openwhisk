@@ -394,7 +394,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     }
     logging.info(this, s"received result ack for '$aid'")(tid)
               // meow_exectime("")
-        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee")} )    
+            val meow_duration = response.fold(l => l, r => r.duration)
+        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")} )    
         meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")} ) 
   }
 
