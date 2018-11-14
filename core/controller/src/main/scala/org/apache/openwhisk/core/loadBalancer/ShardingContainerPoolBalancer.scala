@@ -290,7 +290,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     activations.getOrElseUpdate(
       msg.activationId, {
         val timeoutHandler = actorSystem.scheduler.scheduleOnce(timeout) {
-          processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
+          processCompletion(msg.activationId, msg.transid, forced = true, meow_duration = 99, invoker = instance)
+          // processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
         }
 
         // please note: timeoutHandler.cancel must be called on all non-timeout paths, e.g. Success
