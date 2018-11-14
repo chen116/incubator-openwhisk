@@ -433,7 +433,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         logging.info(this, s"${if (!forced) "received" else "forced"} completion ack for woof '$aid'")(tid)
 
-        meow_exectime.foreach(case (keyy, valuee) => logging.info(this,s"$keyy $valuee") )    
+        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"$keyy $valuee")} )    
 
 
         // Active acks that are received here are strictly from user actions - health actions are not part of
