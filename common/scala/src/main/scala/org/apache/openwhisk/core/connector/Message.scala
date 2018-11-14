@@ -21,7 +21,7 @@ import scala.util.Try
 import spray.json._
 import org.apache.openwhisk.common.TransactionId
 import org.apache.openwhisk.core.entity._
-
+import scala.collection.JavaConverters._
 /** Basic trait for messages that are sent on a message bus connector. */
 trait Message {
 
