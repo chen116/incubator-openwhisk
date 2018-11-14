@@ -272,7 +272,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   case None => map.put(key, defaultValue)
   case Some(v) => map(key) = updatedValue
 }
-    meow_exectime.getOrElseUpdate(action.fullyQualifiedName(false).asString,0)
+    meow_exectime.getOrElseUpdate(action.fullyQualifiedName(false).asString,{0})
 
     totalActivations.increment()
     totalActivationMemory.add(action.limits.memory.megabytes)
