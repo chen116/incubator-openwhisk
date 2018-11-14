@@ -361,8 +361,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         processCompletion(
           m.activationId,
           m.transid,
-          forced = false,
-          isSystemError = m.isSystemError,
+          forced = false,//isSystemError = m.isSystemError,
           invoker = m.invoker, meow_duration = m.meow_duration)
         activationFeed ! MessageFeed.Processed
 
@@ -396,8 +395,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   /** Process the completion ack and update the state */
   private def processCompletion(aid: ActivationId,
                                 tid: TransactionId,
-                                forced: Boolean,
-                                isSystemError: Boolean,
+                                forced: Boolean,//isSystemError: Boolean,
                                 invoker: InvokerInstanceId, meow_duration: Long ): Unit = {
 
     val invocationResult = if (forced) {
@@ -405,7 +403,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     } else {
       // If the response contains a system error, report that, otherwise report Success
       // Left generally is considered a Success, since that could be a message not fitting into Kafka
-      if (isSystemError) {
+      if (false) {
         InvocationFinishedResult.SystemError
       } else {
         InvocationFinishedResult.Success
