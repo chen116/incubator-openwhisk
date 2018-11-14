@@ -398,7 +398,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
                                 tid: TransactionId,
                                 forced: Boolean,
                                 isSystemError: Boolean,
-                                invoker: InvokerInstanceId, meow_duration: Option[Long] ): Unit = {
+                                invoker: InvokerInstanceId, meow_duration: Long ): Unit = {
 
     val invocationResult = if (forced) {
       InvocationFinishedResult.Timeout
