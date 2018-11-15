@@ -25,14 +25,15 @@
 # from there; this permits a (private) registry to be used for caching the images. The registry if specified
 # must include a trailing '/'.
 #
-- name: "pull runtime action images per manifest"
-  shell: "docker pull {{runtimes_registry | default()}}{{item.prefix}}/{{item.name}}:{{item.tag | default()}}"
-  loop: "{{ runtimesManifest.runtimes.values() | sum(start=[]) | selectattr('deprecated', 'equalto',false)  | map(attribute='image') | list | unique }}"
-  when: skip_pull_runtimes is not defined or not (skip_pull_runtimes == True or skip_pull_runtimes.lower() == "true")
-  register: result
-  until: (result.rc == 0)
-  retries: "{{ docker.pull.retries }}"
-  delay: "{{ docker.pull.delay }}"
+#meow
+# - name: "pull runtime action images per manifest"
+#   shell: "docker pull {{runtimes_registry | default()}}{{item.prefix}}/{{item.name}}:{{item.tag | default()}}"
+#   loop: "{{ runtimesManifest.runtimes.values() | sum(start=[]) | selectattr('deprecated', 'equalto',false)  | map(attribute='image') | list | unique }}"
+#   when: skip_pull_runtimes is not defined or not (skip_pull_runtimes == True or skip_pull_runtimes.lower() == "true")
+#   register: result
+#   until: (result.rc == 0)
+#   retries: "{{ docker.pull.retries }}"
+#   delay: "{{ docker.pull.delay }}"
 
 ###
 # See comment above for pulling other runtime images.
