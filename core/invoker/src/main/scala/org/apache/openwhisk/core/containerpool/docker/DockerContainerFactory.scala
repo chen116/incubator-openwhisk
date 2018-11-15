@@ -69,7 +69,7 @@ class DockerContainerFactory(instance: InvokerInstanceId,
       name = Some(name),
       useRunc = dockerContainerFactoryConfig.useRunc,
       parameters ++ containerArgsConfig.extraArgs.map { case (k, v) => ("--" + k, v) })
-     logging.info(scala.concurrent.Future[org.apache.openwhisk.core.containerpool.Container],s"exectime woof meowww $cpuShares")
+     logging.info(scala.concurrent.Future[org.apache.openwhisk.core.containerpool.Container],s"exectime woof meowww ")
   }
 
   /** Perform cleanup on init */
