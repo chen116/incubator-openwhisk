@@ -255,12 +255,14 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         }
       }
       .getOrElse {
+        logging.info(this,s"exectime woof meowww")
         // report the state of all invokers
         val actionType = if (!action.exec.pull) "non-blackbox" else "blackbox"
         val invokerStates = invokersToUse.foldLeft(Map.empty[InvokerState, Int]) { (agg, curr) =>
           val count = agg.getOrElse(curr.status, 0) + 1
           agg + (curr.status -> count)
         }
+        logging.info(this,s"exectime woof meowww2")
 
         logging.error(this, s"failed to schedule $actionType action, invokers to use: $invokerStates")
         Future.failed(LoadBalancerException("No invokers available"))
@@ -293,7 +295,6 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     activations.getOrElseUpdate(
       msg.activationId, {
         val timeoutHandler = actorSystem.scheduler.scheduleOnce(timeout) {
-          // processCompletion(msg.activationId, msg.transid, forced = true, invoker = instance, meow_duration = 99)
           processCompletion(msg.activationId, msg.transid, forced = true, isSystemError = false, invoker = instance)
         }
 
