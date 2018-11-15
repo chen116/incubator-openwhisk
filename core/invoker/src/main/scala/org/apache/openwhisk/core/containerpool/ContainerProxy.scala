@@ -138,8 +138,8 @@ class ContainerProxy(
         job.action.exec.pull,
         job.action.limits.memory.megabytes.MB,
         poolConfig.cpuShare(job.action.limits.memory.megabytes.MB))
-
-      logging.info(this, s"meowww")
+        val sss = poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)
+      logging.info(this, s"meowww $sss")
 
       // container factory will either yield a new container ready to execute the action, or
       // starting up the container failed; for the latter, it's either an internal error starting
