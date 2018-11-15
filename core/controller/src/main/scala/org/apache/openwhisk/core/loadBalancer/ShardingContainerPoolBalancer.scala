@@ -406,7 +406,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         })
 
         val aid_string = (aid.toString match {
-          case Some(x:String) => x
+          case Option(x:String) => x
           case _ => "meow"
 
         })
