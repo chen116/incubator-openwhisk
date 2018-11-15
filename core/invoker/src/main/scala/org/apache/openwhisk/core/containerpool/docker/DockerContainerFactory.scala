@@ -62,7 +62,7 @@ class DockerContainerFactory(instance: InvokerInstanceId,
       tid,
       image = if (userProvidedImage) Left(actionImage) else Right(actionImage.localImageName(config.runtimesRegistry)),
       memory = memory,
-      cpuShares = cpuShares*1.5, //meow
+      cpuShares = cpuShares*2, //meow
       environment = Map("__OW_API_HOST" -> config.wskApiHost),
       network = containerArgsConfig.network,
       dnsServers = containerArgsConfig.dnsServers,
