@@ -45,6 +45,9 @@ import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future, Promise}
 import scala.util.{Failure, Success}
 
+//meow
+import scala.collection.mutable.ArrayBuffer
+
 /**
  * A loadbalancer that schedules workload based on a hashing-algorithm.
  *
@@ -163,7 +166,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   private val activationsPerNamespace = TrieMap[UUID, LongAdder]()
   private val totalActivations = new LongAdder()
   private val totalActivationMemory = new LongAdder()
-  private val meow_exectime = TrieMap[String,Int]()
+  private val meow_exectime = TrieMap[String,Seq[Int]]()
   private val meow_id2action = TrieMap[String,String]()
 
   /** State needed for scheduling. */
@@ -270,7 +273,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
                               instance: InvokerInstanceId): ActivationEntry = {
 
 
-    meow_exectime.getOrElseUpdate(msg.action.meow_asString,{0})
+    meow_exectime.getOrElseUpdate(msg.action.meow_asString,{ArrayBuffer.empty[Long]})
     meow_id2action.getOrElseUpdate(msg.activationId.toString ,{msg.action.meow_asString})
 
     totalActivations.increment()
@@ -394,7 +397,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     }
     logging.info(this, s"received result ack for '$aid'")(tid)
               // meow_exectime("")
-        val meow_duration = response.fold(l => l, r => r.duration)
+        val meow_duration = response.fold(l => l, r => r.duration).getOrElse(0).asInstanceOf[Long]
+        meow_exectime.get(meow_id2action.get(aid.toString))+= meow_duration
         meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")})(tid)    
         meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")} )(tid)
   }
