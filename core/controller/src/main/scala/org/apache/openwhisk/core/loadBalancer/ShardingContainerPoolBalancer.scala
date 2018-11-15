@@ -166,7 +166,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   private val activationsPerNamespace = TrieMap[UUID, LongAdder]()
   private val totalActivations = new LongAdder()
   private val totalActivationMemory = new LongAdder()
-  private val meow_exectime = TrieMap[String,Seq[Int]]()
+  private val meow_exectime = TrieMap[String,ArrayBuffer[Long]]()
   private val meow_id2action = TrieMap[String,String]()
 
   /** State needed for scheduling. */
