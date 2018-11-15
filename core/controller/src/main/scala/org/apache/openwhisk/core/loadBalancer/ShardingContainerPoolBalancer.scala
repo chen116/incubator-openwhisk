@@ -404,9 +404,16 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           case Some(x:Long) => x // this extracts the value in a as an Int
           case _ => 0
         })
-        meow_exectime.get(meow_id2action.get(aid.toString))+= meow_duration
-        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")})(tid)    
-        meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")} )(tid)
+
+        val aid_string = (aid.toString match {
+          case Some(x:String) => x
+          case _ => "meow"
+
+        })
+
+        meow_exectime.get(meow_id2action.get(aid_string))+= meow_duration
+        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")(tid)})   
+        meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")(tid)} )
   }
 
   /** Process the completion ack and update the state */
