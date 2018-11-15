@@ -397,7 +397,13 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     }
     logging.info(this, s"received result ack for '$aid'")(tid)
               // meow_exectime("")
-        val meow_duration = response.fold(l => l, r => r.duration).getOrElse(0).asInstanceOf[Long]
+       
+        
+
+        val meow_duration = (response.fold(l => l, r => r.duration) match {
+          case Some(x:Long) => x // this extracts the value in a as an Int
+          case _ => 0
+        })
         meow_exectime.get(meow_id2action.get(aid.toString))+= meow_duration
         meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")})(tid)    
         meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")} )(tid)
