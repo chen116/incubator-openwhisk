@@ -69,6 +69,7 @@ class DockerContainerFactory(instance: InvokerInstanceId,
       name = Some(name),
       useRunc = dockerContainerFactoryConfig.useRunc,
       parameters ++ containerArgsConfig.extraArgs.map { case (k, v) => ("--" + k, v) })
+     logging.info(this,s"exectime woof meowww $cpuShares")
   }
 
   /** Perform cleanup on init */
