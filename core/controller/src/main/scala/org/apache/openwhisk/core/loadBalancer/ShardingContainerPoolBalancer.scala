@@ -251,7 +251,10 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
       .map { invoker =>
         val entry = setupActivation(msg, action, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
+          logging.info(this,s"exectime woof meowww3")
           entry.promise.future
+        
+
         }
       }
       .getOrElse {
