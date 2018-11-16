@@ -33,7 +33,7 @@
                         "memory": "256 MB"
                     }
                 ]
-            },
+            }
             // {
             //     "kind": "nodejs:8",
             //     "default": false,
