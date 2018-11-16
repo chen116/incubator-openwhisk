@@ -415,8 +415,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // })
 
         meow_exectime.get(meow_id2action.get(aid.toString).get).get+= meow_duration
-        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee $meow_duration")(tid)})   
-        meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")(tid)} )
+        meow_exectime.foreach({case (keyy, valuee) => logging.info(this,s"exectime woof $keyy $valuee")(tid)})   
+        // meow_id2action.foreach({case (keyy, valuee) => logging.info(this,s"id2action woof $keyy $valuee")(tid)} )
   }
 
   /** Process the completion ack and update the state */
