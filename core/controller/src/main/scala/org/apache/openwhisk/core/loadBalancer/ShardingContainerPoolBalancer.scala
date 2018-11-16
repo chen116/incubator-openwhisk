@@ -455,7 +455,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           entry.promise.tryFailure(new Throwable("no completion ack received"))
         }
 
-        logging.info(this, s"${if (!forced) "received" else "forced"}  completion ack for woof '$aid'")(tid)
+        logging.info(this, s"${if (!forced) "received" else "forced"}  completion ack for '$aid'")(tid)
 
    
 

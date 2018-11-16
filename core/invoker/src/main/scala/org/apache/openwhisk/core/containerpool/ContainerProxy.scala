@@ -129,7 +129,7 @@ class ContainerProxy(
     // cold start (no container to reuse or available stem cell container)
     case Event(job: Run, _) =>
       implicit val transid = job.msg.transid
-      
+      Thread.sleep(5000)
       // create a new container
       val container = factory(
         job.msg.transid,
