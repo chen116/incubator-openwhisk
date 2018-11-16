@@ -138,7 +138,7 @@ class ContainerProxy(
         job.action.exec.pull,
         job.action.limits.memory.megabytes.MB,
         poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*1)
-      val meow = poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*2
+      val meow = poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*1
       logging.info(this, s"meow $meow")
 
       // container factory will either yield a new container ready to execute the action, or
