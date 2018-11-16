@@ -129,7 +129,7 @@ class ContainerProxy(
     // cold start (no container to reuse or available stem cell container)
     case Event(job: Run, _) =>
       implicit val transid = job.msg.transid
-
+      
       // create a new container
       val container = factory(
         job.msg.transid,
@@ -137,9 +137,9 @@ class ContainerProxy(
         job.action.exec.image,
         job.action.exec.pull,
         job.action.limits.memory.megabytes.MB,
-        poolConfig.cpuShare(job.action.limits.memory.megabytes.MB))
-        val sss = poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)
-      logging.info(this, s"meowww $sss")
+        poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*2)
+      val meow = poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*2
+      logging.info(this, s"meow $meow")
 
       // container factory will either yield a new container ready to execute the action, or
       // starting up the container failed; for the latter, it's either an internal error starting
