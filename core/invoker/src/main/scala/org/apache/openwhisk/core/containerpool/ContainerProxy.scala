@@ -136,7 +136,7 @@ class ContainerProxy(
         ContainerProxy.containerName(instance, job.msg.user.namespace.name.asString, job.action.name.asString),
         job.action.exec.image,
         job.action.exec.pull,
-        (job.action.limits.memory.megabytes.MB),
+        (job.action.limits.memory.megabytes.MB)*2,
         poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*2)
       val meow = (job.action.limits.memory.megabytes.MB) //poolConfig.cpuShare(job.action.limits.memory.megabytes.MB)*4
       logging.info(this, s"meow $meow")
