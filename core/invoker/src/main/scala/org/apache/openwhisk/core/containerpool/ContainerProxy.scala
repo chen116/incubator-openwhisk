@@ -129,6 +129,10 @@ class ContainerProxy(
     // cold start (no container to reuse or available stem cell container)
     case Event(job: Run, _) =>
       implicit val transid = job.msg.transid
+      val meow_quo = job.msg.traceContext match { 
+        case Some(s)=> s("quo").toInt
+        case None => 2000  
+        }
       
       // create a new container
       val container = factory(
@@ -138,7 +142,7 @@ class ContainerProxy(
         job.action.exec.pull,
         (job.action.limits.memory.megabytes.MB),
         poolConfig.cpuShare(job.action.limits.memory.megabytes.MB),
-        5000)
+        meow_quo)
       val meow = job.msg.toString
       val qq = job.msg.traceContext
       logging.info(this, s"meow $meow $qq")
