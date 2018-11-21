@@ -257,7 +257,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // val meowp = new Parameters(cm)
         val meowp = action.parameters.meowp("asd","asdff")
         action.parameters ++ meowp
-        val mmm = action.parameters.toString
+        val mmm = meowp.toString
         logging.info(this,s"exectime woof $mmm")
         val entry = setupActivation(msg, action, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
