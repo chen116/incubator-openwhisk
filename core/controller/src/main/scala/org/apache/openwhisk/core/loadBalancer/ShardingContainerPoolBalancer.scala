@@ -304,6 +304,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
           qrootControllerIndex,qblocking,qcontent,qcause,qtraceContext)
+        logging.info(this,s"exectime doofy $qtraceContext")
+
         val entry = setupActivation(msg, newact, invoker)
         sendActivationToInvoker(messageProducer, newmsg, invoker).map { _ =>
           entry.promise.future
