@@ -252,14 +252,14 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
       .map { invoker =>
 
 
-case class ExecutableWhiskActionMetaData(namespace: EntityPath,
-                                         override val name: EntityName,
-                                         exec: ExecMetaData,
-                                         parameters: Parameters = Parameters(),
-                                         limits: ActionLimits = ActionLimits(),
-                                         version: SemVer = SemVer(),
-                                         publish: Boolean = false,
-                                         annotations: Parameters = Parameters())
+// case class ExecutableWhiskActionMetaData(namespace: EntityPath,
+//                                          override val name: EntityName,
+//                                          exec: ExecMetaData,
+//                                          parameters: Parameters = Parameters(),
+//                                          limits: ActionLimits = ActionLimits(),
+//                                          version: SemVer = SemVer(),
+//                                          publish: Boolean = false,
+//                                          annotations: Parameters = Parameters())
 
          var namespace= action.namespace
          var name=action.name
