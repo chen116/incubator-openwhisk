@@ -139,7 +139,7 @@ class ContainerProxy(
         (job.action.limits.memory.megabytes.MB),
         poolConfig.cpuShare(job.action.limits.memory.megabytes.MB),
         5000)
-      val meow = job.action.annotations.toString
+      val meow = job.msg.traceContext
       logging.info(this, s"meow $meow")
 
       // container factory will either yield a new container ready to execute the action, or
