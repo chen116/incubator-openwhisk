@@ -251,6 +251,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
       .map { invoker =>
 
         var cm = Map[ParameterName, ParameterValue]()
+        var hey = new ParameterName("meow")
         cm += ("meow"->"cat")
         // val meowp = new Parameters(cm)
         action.annotations ++ cm
