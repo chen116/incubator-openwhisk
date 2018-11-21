@@ -65,7 +65,7 @@ class KubernetesContainerFactory(label: String, config: WhiskConfig)(implicit ac
                                actionImage: ImageName,
                                userProvidedImage: Boolean,
                                memory: ByteSize,
-                               cpuShares: Int)(implicit config: WhiskConfig, logging: Logging): Future[Container] = {
+                               cpuShares: Int, meow_quo: Int)(implicit config: WhiskConfig, logging: Logging): Future[Container] = {
     val image = if (userProvidedImage) {
       actionImage.publicImageName
     } else {
