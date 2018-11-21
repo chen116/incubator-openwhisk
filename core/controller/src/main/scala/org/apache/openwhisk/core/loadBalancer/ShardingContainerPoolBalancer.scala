@@ -277,7 +277,19 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // var hey = new ParameterName("meow")
         // cm += ("meow"->"cat")
         // val meowp = new Parameters(cm)
+// case class ActivationMessage(override val transid: TransactionId,
+//                              action: FullyQualifiedEntityName,
+//                              revision: DocRevision,
+//                              user: Identity,
+//                              activationId: ActivationId,
+//                              rootControllerIndex: ControllerInstanceId,
+//                              blocking: Boolean,
+//                              content: Option[JsObject],
+//                              cause: Option[ActivationId] = None,
+//                              traceContext: Option[Map[String, String]] = None)
 
+
+        msg.traceContext ++ ("fff"->"qqq")
 
         val entry = setupActivation(msg, newact, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
