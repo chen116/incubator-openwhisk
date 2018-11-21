@@ -62,6 +62,7 @@ object DockerContainer {
              image: Either[ImageName, String],
              memory: ByteSize = 256.MB,
              cpuShares: Int = 0,
+             meow_quo: Int = 2000,
              environment: Map[String, String] = Map.empty,
              network: String = "bridge",
              dnsServers: Seq[String] = Seq.empty,
@@ -86,7 +87,7 @@ object DockerContainer {
     //meow
     val args = Seq(
       "--cpu-quota",
-      "2000",
+      meow_quo.toString,
       "--cpu-period",
       "10000",
       "--cpuset-cpus",

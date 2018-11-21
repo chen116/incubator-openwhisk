@@ -57,12 +57,13 @@ class DockerContainerFactory(instance: InvokerInstanceId,
                                actionImage: ExecManifest.ImageName,
                                userProvidedImage: Boolean,
                                memory: ByteSize,
-                               cpuShares: Int)(implicit config: WhiskConfig, logging: Logging): Future[Container] = {
+                               cpuShares: Int, meow_qu:Int)(implicit config: WhiskConfig, logging: Logging): Future[Container] = {
     DockerContainer.create(
       tid,
       image = if (userProvidedImage) Left(actionImage) else Right(actionImage.localImageName(config.runtimesRegistry)),
       memory = memory,
       cpuShares = cpuShares, 
+      meow_qu = meow_qu,
       environment = Map("__OW_API_HOST" -> config.wskApiHost),
       network = containerArgsConfig.network,
       dnsServers = containerArgsConfig.dnsServers,
