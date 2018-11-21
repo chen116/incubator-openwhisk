@@ -65,7 +65,13 @@ protected[core] class Parameters protected[entity] (private val params: Map[Para
     val qq = Map(new ParameterName(p)->new ParameterValue(v.toJson)) 
     params ++ qq
   }
+  def meowp(p: String, v: String) :Parameters = {
+    // var qq = Map[ParameterName, ParameterValue]()
+    // qq += (new ParameterName(p) -> new ParameterValue(v.toJson))
 
+    val qq = Map(new ParameterName(p)->new ParameterValue(v.toJson)) 
+    new Parameters(params ++ qq)
+  }
   /** Add parameters from p to existing map, overwriting existing values in case of overlap in keys. */
   protected[core] def ++(p: Parameters) = new Parameters(params ++ p.params)
 
