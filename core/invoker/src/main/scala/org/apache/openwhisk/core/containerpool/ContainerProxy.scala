@@ -120,7 +120,7 @@ class ContainerProxy(
         job.exec.image,
         job.exec.pull,
         job.memoryLimit,
-        poolConfig.cpuShare(job.memoryLimit),5000)
+        poolConfig.cpuShare(job.memoryLimit),2500)
         .map(container => PreWarmedData(container, job.exec.kind, job.memoryLimit))
         .pipeTo(self)
 
