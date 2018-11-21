@@ -230,6 +230,9 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   override def publish(action: ExecutableWhiskActionMetaData, msg: ActivationMessage)(
     implicit transid: TransactionId): Future[Future[Either[ActivationId, WhiskActivation]]] = {
 
+    var m1 = action
+    m1.parameters = m1.parameters.meow("asd","asdff")
+
     val (invokersToUse, stepSizes) =
       if (!action.exec.pull) (schedulingState.managedInvokers, schedulingState.managedStepSizes)
       else (schedulingState.blackboxInvokers, schedulingState.blackboxStepSizes)
