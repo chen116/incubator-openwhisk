@@ -120,7 +120,7 @@ class ContainerProxy( //meow
         job.exec.image,
         job.exec.pull,
         job.memoryLimit,
-        poolConfig.cpuShare(job.memoryLimit))
+        poolConfig.cpuShare(job.memoryLimit),5000)
         .map(container => PreWarmedData(container, job.exec.kind, job.memoryLimit))
         .pipeTo(self)
 
