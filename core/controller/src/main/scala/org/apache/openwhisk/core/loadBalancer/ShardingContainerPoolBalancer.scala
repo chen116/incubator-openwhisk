@@ -230,8 +230,6 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
   override def publish(action: ExecutableWhiskActionMetaData, msg: ActivationMessage)(
     implicit transid: TransactionId): Future[Future[Either[ActivationId, WhiskActivation]]] = {
 
-    var m1 = action
-    m1.parameters = m1.parameters.meow("asd","asdff")
 
     val (invokersToUse, stepSizes) =
       if (!action.exec.pull) (schedulingState.managedInvokers, schedulingState.managedStepSizes)
@@ -257,9 +255,9 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // var hey = new ParameterName("meow")
         // cm += ("meow"->"cat")
         // val meowp = new Parameters(cm)
-        val qq = action.parameters.meow("asd","asdff")
-        action.parameters ++ qq
-        val mmm = qq.toString
+        action.parameters.meow("asd","asdff")
+        // action.parameters ++ qq
+        val mmm = action.parameters.toString
         logging.info(this,s"exectime woof $mmm")
         val entry = setupActivation(msg, action, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
