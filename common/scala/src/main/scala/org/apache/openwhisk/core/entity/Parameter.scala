@@ -58,7 +58,7 @@ protected[core] class Parameters protected[entity] (private val params: Map[Para
 
 
   //meow
-  protected[entity] def meow(p: String, v: String) = {
+  def meow(p: String, v: String) = {
     new Parameters(params + (new ParameterName(p) -> new ParameterValue(v.toJson)))
   }
 
