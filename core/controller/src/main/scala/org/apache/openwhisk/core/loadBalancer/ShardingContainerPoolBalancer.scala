@@ -287,12 +287,23 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 //                              content: Option[JsObject],
 //                              cause: Option[ActivationId] = None,
 //                              traceContext: Option[Map[String, String]] = None)
-        // var qq = None: Option[Map[String, String]]
-        // qq = Some(Map("fff"->"qqq"))
 
-        val qq: Option[Map[String, String]] = Some(Map("fff"->"qqq"))
-        msg.traceContext = qq
+          val qtransid = msg.transid
+          val qaction = msg.action
+          val qrevision = msg.revision
+          val quser = msg.user
+          val qactivationId = msg.activationId
+          val qrootControllerIndex = msg.rootControllerIndex
+          val qblocking =msg.blocking
+          val qcontent = msg.content
+          val qcause = msg.cause
 
+        // var qtraceContext = None: Option[Map[String, String]]
+        // qtraceContext = Some(Map("fff"->"qqq"))
+        val qtraceContext: Option[Map[String, String]] = Some(Map("fff"->"qqq"))
+
+        var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
+          qrootControllerIndex,qblocking,qcontent,qcause,qtraceContext)
         val entry = setupActivation(msg, newact, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
           entry.promise.future
