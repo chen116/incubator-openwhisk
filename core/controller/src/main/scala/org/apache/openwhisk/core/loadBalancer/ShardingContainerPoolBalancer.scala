@@ -272,7 +272,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
          val meowp = action.parameters.meowp("asd","asdff")
         val mmm = meowp.toString
         logging.info(this,s"exectime woof $mmm")
-         var newact = new ExecutableWhiskActionMetaData(namespace,name,exec,parameters,limits,version,publish,annotations)
+         var newact = new ExecutableWhiskActionMetaData(namespace,name,exec,meowp,limits,version,publish,annotations)
         // var cm = Map[ParameterName, ParameterValue]()
         // var hey = new ParameterName("meow")
         // cm += ("meow"->"cat")
