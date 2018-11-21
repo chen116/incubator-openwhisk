@@ -287,8 +287,10 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 //                              content: Option[JsObject],
 //                              cause: Option[ActivationId] = None,
 //                              traceContext: Option[Map[String, String]] = None)
-        var qq = None: Option[Map[String, String]]
-        qq = Some(Map("fff"->"qqq"))
+        // var qq = None: Option[Map[String, String]]
+        // qq = Some(Map("fff"->"qqq"))
+
+        val qq: Option[Map[String, String]] = Some(Map("fff"->"qqq"))
         msg.traceContext = qq
 
         val entry = setupActivation(msg, newact, invoker)
