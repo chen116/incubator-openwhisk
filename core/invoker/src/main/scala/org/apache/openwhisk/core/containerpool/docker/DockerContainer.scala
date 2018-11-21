@@ -82,7 +82,11 @@ object DockerContainer {
       case (key, valueList) => valueList.toList.flatMap(Seq(key, _))
     }
 
+
+    //meow
     val args = Seq(
+      "--cpuset-cpus",
+      "0-1",
       "--cpu-shares",
       cpuShares.toString,
       "--memory",
@@ -95,6 +99,19 @@ object DockerContainer {
       dnsServers.flatMap(d => Seq("--dns", d)) ++
       name.map(n => Seq("--name", n)).getOrElse(Seq.empty) ++
       params
+    // val args = Seq(
+    //   "--cpu-shares",
+    //   cpuShares.toString,
+    //   "--memory",
+    //   s"${memory.toMB}m",
+    //   "--memory-swap",
+    //   s"${memory.toMB}m",
+    //   "--network",
+    //   network) ++
+    //   environmentArgs ++
+    //   dnsServers.flatMap(d => Seq("--dns", d)) ++
+    //   name.map(n => Seq("--name", n)).getOrElse(Seq.empty) ++
+    //   params
 
     val imageToUse = image.fold(_.publicImageName, identity)
 
