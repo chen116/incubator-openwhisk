@@ -269,15 +269,16 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
          var version= action.version
          var publish= action.publish
          var annotations=action.annotations
+         val meowp = action.parameters.meowp("asd","asdff")
+        val mmm = meowp.toString
+        logging.info(this,s"exectime woof $mmm")
          var newact = new ExecutableWhiskActionMetaData(namespace,name,exec,parameters,limits,version,publish,annotations)
         // var cm = Map[ParameterName, ParameterValue]()
         // var hey = new ParameterName("meow")
         // cm += ("meow"->"cat")
         // val meowp = new Parameters(cm)
-        val meowp = action.parameters.meowp("asd","asdff")
-        action.parameters ++ meowp
-        val mmm = meowp.toString
-        logging.info(this,s"exectime woof $mmm")
+
+
         val entry = setupActivation(msg, newact, invoker)
         sendActivationToInvoker(messageProducer, msg, invoker).map { _ =>
           entry.promise.future
@@ -286,15 +287,12 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         }
       }
       .getOrElse {
-        logging.info(this,s"exectime woof meowww")
         // report the state of all invokers
         val actionType = if (!action.exec.pull) "non-blackbox" else "blackbox"
         val invokerStates = invokersToUse.foldLeft(Map.empty[InvokerState, Int]) { (agg, curr) =>
           val count = agg.getOrElse(curr.status, 0) + 1
           agg + (curr.status -> count)
         }
-        logging.info(this,s"exectime woof meowww2")
-
         logging.error(this, s"failed to schedule $actionType action, invokers to use: $invokerStates")
         Future.failed(LoadBalancerException("No invokers available"))
       }
