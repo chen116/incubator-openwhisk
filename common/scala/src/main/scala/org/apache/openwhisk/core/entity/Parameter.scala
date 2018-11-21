@@ -59,8 +59,10 @@ protected[core] class Parameters protected[entity] (private val params: Map[Para
 
   //meow
   def meow(p: String, v: String)  = {
-    val qq = Map[ParameterName, ParameterValue]()
-    qq += (new ParameterName(p) -> new ParameterValue(v.toJson))
+    // val qq = Map[ParameterName, ParameterValue]()
+    // qq += (new ParameterName(p) -> new ParameterValue(v.toJson))
+    // val qq = Map[ParameterName, ParameterValue]()
+    val qq = (new ParameterName(p) -> new ParameterValue(v.toJson))
     params ++ qq
   }
 
