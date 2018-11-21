@@ -85,6 +85,10 @@ object DockerContainer {
 
     //meow
     val args = Seq(
+      "--cpu-rt-period",
+      "10000",
+      "--cpu-rt-runtime",
+      "5000"
       "--cpuset-cpus",
       "1-2",
       "--cpu-shares",
