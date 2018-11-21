@@ -23,6 +23,7 @@ buildscript {
         classpath "cz.alenkacz:gradle-scalafmt:${gradle.scalafmt.version}"
         classpath 'org.scoverage:gradle-scoverage:2.3.0'
     }
+
 }
 
 plugins {
