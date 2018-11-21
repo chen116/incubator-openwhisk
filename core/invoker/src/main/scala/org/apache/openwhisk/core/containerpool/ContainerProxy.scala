@@ -141,7 +141,7 @@ class ContainerProxy(
         5000)
       val meow = job.msg.toString
       val qq = job.msg.traceContext
-      logging.info(this, s"meow $meow")
+      logging.info(this, s"meow $meow $qq")
 
       // container factory will either yield a new container ready to execute the action, or
       // starting up the container failed; for the latter, it's either an internal error starting
