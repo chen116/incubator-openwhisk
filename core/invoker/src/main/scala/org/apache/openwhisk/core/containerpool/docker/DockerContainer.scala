@@ -86,12 +86,12 @@ object DockerContainer {
 
     //meow
     val args = Seq(
-      "--cpu-quota",
-      meow_quo.toString,
-      "--cpu-period",
-      "10000",
-      "--cpuset-cpus",
-      "1-2",
+      // "--cpu-quota",
+      // meow_quo.toString,
+      // "--cpu-period",
+      // "10000",
+      // "--cpuset-cpus",
+      // "1-2",
       "--cpu-shares",
       cpuShares.toString,
       "--memory",
