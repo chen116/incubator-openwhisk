@@ -202,9 +202,8 @@ class DockerContainer(protected val id: ContainerId,
     super.destroy()
     docker.rm(id)
   }
-  def meow_id(): String = {
-    return id.toString
-  }
+  
+
   /**
    * Was the container killed due to memory exhaustion?
    *
