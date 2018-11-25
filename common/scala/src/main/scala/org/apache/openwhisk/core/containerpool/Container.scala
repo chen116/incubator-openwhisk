@@ -130,10 +130,7 @@ trait Container {
         }
       }
   }
-  //meow
-  def setup_meow(cpu_quo: Int )(implicit transid: TransactionId) = {
 
-  }
   /** Runs code in the container. */
   def run(parameters: JsObject, environment: JsObject, timeout: FiniteDuration)(
     implicit transid: TransactionId): Future[(Interval, ActivationResponse)] = {
@@ -171,40 +168,6 @@ trait Container {
   }
 
 
-def meow_prerun(parameters: JsObject, environment: JsObject, timeout: FiniteDuration)(
-    implicit transid: TransactionId): Future[(Interval, ActivationResponse)] = {
-    val actionName = environment.fields.get("action_name").map(_.convertTo[String]).getOrElse("")
-    val start =
-      transid.started(
-        this,
-        LoggingMarkers.INVOKER_ACTIVATION_RUN,
-        s"sending arguments to $actionName at $id $addr",
-        logLevel = InfoLevel)
-
-    val parameterWrapper = JsObject("value" -> parameters)
-    val body = JsObject(parameterWrapper.fields ++ environment.fields)
-    callContainer("/run", body, timeout, retry = false)
-      .andThen { // never fails
-        case Success(r: RunResult) =>
-          transid.finished(
-            this,
-            start.copy(start = r.interval.start),
-            s"running result: ${r.toBriefString}",
-            endTime = r.interval.end,
-            logLevel = InfoLevel)
-        case Failure(t) =>
-          transid.failed(this, start, s"run failed with $t")
-      }
-      .map { result =>
-        val response = if (result.interval.duration >= timeout) {
-          ActivationResponse.developerError(Messages.timedoutActivation(timeout, false))
-        } else {
-          ActivationResponse.processRunResponseContent(result.response, logging)
-        }
-
-        (result.interval, response)
-      }
-  }
   /**
    * Makes an HTTP request to the container.
    *
