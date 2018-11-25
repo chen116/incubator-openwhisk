@@ -69,9 +69,6 @@ trait Container {
   protected val addr: ContainerAddress
   protected implicit val logging: Logging
   protected implicit val ec: ExecutionContext
-  def meow_id(): String = {
-    return id.toString
-  }
 
   /** HTTP connection to the container, will be lazily established by callContainer */
   protected var httpConnection: Option[ContainerClient] = None
