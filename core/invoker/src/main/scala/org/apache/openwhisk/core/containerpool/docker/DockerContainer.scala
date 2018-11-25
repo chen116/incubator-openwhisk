@@ -203,7 +203,7 @@ class DockerContainer(protected val id: ContainerId,
     docker.rm(id)
   }
    override   def meow_Container_update(quo: Int)(implicit transid: TransactionId): Future[Unit] = {
-    docker.meow_update(id)
+    docker.meow_DockerClient_update(id)
   }
 
   /**
