@@ -248,6 +248,13 @@ trait DockerApi {
    * @return a Future completing according to the command's exit-code
    */
   def rm(id: ContainerId)(implicit transid: TransactionId): Future[Unit]
+  /**
+   * Removes the container with the given id.
+   *
+   * @param id the id of the container to remove
+   * @return a Future completing according to the command's exit-code
+   */
+  def meow_update(id: ContainerId)(implicit transid: TransactionId): Future[Unit]
 
   /**
    * Returns a list of ContainerIds in the system.
