@@ -138,37 +138,7 @@ class DockerClient(dockerHost: Option[String] = None,
         }
     }
   }
-  def meow_prerun(image: String, args: Seq[String] = Seq.empty[String])(
-    implicit transid: TransactionId): Future[ContainerId] = {
-    Future {
-      blocking {
-        // Acquires a permit from this semaphore, blocking until one is available, or the thread is interrupted.
-        // Throws InterruptedException if the current thread is interrupted
-        runSemaphore.acquire()
-      }
-    }.flatMap { _ =>
-      // Iff the semaphore was acquired successfully
-      runCmd(Seq("run", "-d") ++ args ++ Seq(image), config.timeouts.run)
-        .andThen {
-          // Release the semaphore as quick as possible regardless of the runCmd() result
-          case _ => runSemaphore.release()
-        }
-        .map(ContainerId.apply)
-        .recoverWith {
-          // https://docs.docker.com/v1.12/engine/reference/run/#/exit-status
-          // Exit status 125 means an error reported by the Docker daemon.
-          // Examples:
-          // - Unrecognized option specified
-          // - Not enough disk space
-          case pre: ProcessUnsuccessfulException if pre.exitStatus == ExitStatus(125) =>
-            Future.failed(
-              DockerContainerId
-                .parse(pre.stdout)
-                .map(BrokenDockerContainer(_, s"Broken container: ${pre.getMessage}"))
-                .getOrElse(pre))
-        }
-    }
-  }
+
   def inspectIPAddress(id: ContainerId, network: String)(implicit transid: TransactionId): Future[ContainerAddress] =
     runCmd(
       Seq("inspect", "--format", s"{{.NetworkSettings.Networks.${network}.IPAddress}}", id.asString),
@@ -235,14 +205,6 @@ trait DockerApi {
    * @return id of the started container
    */
   def run(image: String, args: Seq[String] = Seq.empty[String])(implicit transid: TransactionId): Future[ContainerId]
-  /**
-   * Spawns a container in detached mode.
-   *
-   * @param image the image to start the container with
-   * @param args arguments for the docker run command
-   * @return id of the started container
-   */
-  def meow_prerun(image: String, args: Seq[String] = Seq.empty[String])(implicit transid: TransactionId): Future[ContainerId]
 
   /**
    * Gets the IP address of a given container.

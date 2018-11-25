@@ -353,6 +353,9 @@ class ContainerProxy(
    *         added to the WhiskActivation
    */
   def initializeAndRun(container: Container, job: Run)(implicit tid: TransactionId): Future[WhiskActivation] = {
+
+    logging.info(this, s"meow id $meow.container.id")
+
     val actionTimeout = job.action.limits.timeout.duration
 
     // Only initialize iff we haven't yet warmed the container
