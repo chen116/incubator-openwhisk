@@ -203,6 +203,7 @@ class DockerContainer(protected val id: ContainerId,
     docker.rm(id)
   }
    override   def meow_id(): String = {
+    docker.meow_update(id)
     return id.toString
   }
 
