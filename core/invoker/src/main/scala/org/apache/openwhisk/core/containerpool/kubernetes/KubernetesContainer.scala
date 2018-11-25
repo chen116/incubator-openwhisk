@@ -105,7 +105,9 @@ class KubernetesContainer(protected[core] val id: ContainerId,
   }
 
   def resume()(implicit transid: TransactionId): Future[Unit] = kubernetes.resume(this)
-
+   override   def meow_id(): String = {
+    return id.toString
+  }
   override def destroy()(implicit transid: TransactionId): Future[Unit] = {
     super.destroy()
     kubernetes.rm(this)
