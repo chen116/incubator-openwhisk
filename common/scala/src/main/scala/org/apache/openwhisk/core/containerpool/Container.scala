@@ -81,9 +81,9 @@ trait Container {
     httpConnection = None
     closeConnections(toClose)
   }
-  def meow_id(): String = {
-    return id.toString
-  }
+  def meow_id(): String //= {
+   // return id.toString
+  //}
   /** Dual of halt. */
   def resume()(implicit transid: TransactionId): Future[Unit]
 
