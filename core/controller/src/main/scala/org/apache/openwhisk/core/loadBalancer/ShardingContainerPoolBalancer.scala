@@ -251,7 +251,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
     chosen
       .map { invoker =>
 
-
+//meow_quo
 // case class ExecutableWhiskActionMetaData(namespace: EntityPath,
 //                                          override val name: EntityName,
 //                                          exec: ExecMetaData,
@@ -305,6 +305,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
           qrootControllerIndex,qblocking,qcontent,qcause,qtraceContext)
         logging.info(this,s"exectime doofy $qtraceContext")
+//meow_quo
 
         val entry = setupActivation(msg, newact, invoker)
         sendActivationToInvoker(messageProducer, newmsg, invoker).map { _ =>
