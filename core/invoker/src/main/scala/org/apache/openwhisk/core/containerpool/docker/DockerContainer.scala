@@ -202,7 +202,7 @@ class DockerContainer(protected val id: ContainerId,
     super.destroy()
     docker.rm(id)
   }
-   override def meow_id()(implicit transid: TransactionId): String = {
+   override   def meow_id()(implicit transid: TransactionId): String = {
     docker.meow_update(id)
     return id.toString
   }
