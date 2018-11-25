@@ -159,8 +159,8 @@ class DockerClient(dockerHost: Option[String] = None,
   def rm(id: ContainerId)(implicit transid: TransactionId): Future[Unit] =
     runCmd(Seq("rm", "-f", id.asString), config.timeouts.rm).map(_ => ())
 
-  def meow_update(id: ContainerId)(implicit transid: TransactionId): Future[Unit] =
-    runCmd(Seq("update", "--cpu-quota","4000", id.asString), config.timeouts.rm).map(_ => ())
+  def meow_DockerClient_update(id: ContainerId,quo:Int)(implicit transid: TransactionId): Future[Unit] =
+    runCmd(Seq("update", "--cpu-quota",quo.toString, id.asString), config.timeouts.rm).map(_ => ())
 
   def ps(filters: Seq[(String, String)] = Seq.empty, all: Boolean = false)(
     implicit transid: TransactionId): Future[Seq[ContainerId]] = {
@@ -254,7 +254,7 @@ trait DockerApi {
    * @param id the id of the container to remove
    * @return a Future completing according to the command's exit-code
    */
-  def meow_update(id: ContainerId)(implicit transid: TransactionId): Future[Unit]
+  def meow_DockerClient_update(id: ContainerId, quo:Int)(implicit transid: TransactionId): Future[Unit]
 
   /**
    * Returns a list of ContainerIds in the system.

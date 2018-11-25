@@ -178,7 +178,7 @@ class MesosTask(override protected val id: ContainerId,
     super.suspend()
     // suspend not supported (just return result from super)
   }
-   override   def meow_id()(implicit transid: TransactionId): Future[Unit] = {
+   override   def meow_Container_update(quo: Int)(implicit transid: TransactionId): Future[Unit] = {
     super.suspend()
     // suspend not supported (just return result from super)
   }

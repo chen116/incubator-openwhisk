@@ -353,7 +353,7 @@ class ContainerProxy(
    *         added to the WhiskActivation
    */
   def initializeAndRun(container: Container, job: Run)(implicit tid: TransactionId): Future[WhiskActivation] = {
-    val qq=container.meow_id()
+    val qq=container.meow_Container_update(3500)
     logging.info(this, s"meowid $qq")
 
     val actionTimeout = job.action.limits.timeout.duration
