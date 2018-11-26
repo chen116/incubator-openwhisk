@@ -160,7 +160,7 @@ class DockerClient(dockerHost: Option[String] = None,
     runCmd(Seq("rm", "-f", id.asString), config.timeouts.rm).map(_ => ())
 
   def meow_DockerClient_update(id: ContainerId,quo:Int)(implicit transid: TransactionId): Future[Unit] =
-    runCmd(Seq("update", "--cpu-rt-runtime","500000", "--ulimit", "rtprio=99" ,"--cap-add","sys_nice"  ,id.asString), config.timeouts.rm).map(_ => ())
+    runCmd(Seq("update", "--cpu-rt-runtime","100000", "--ulimit", "rtprio=99" ,"--cap-add","sys_nice"  ,id.asString), config.timeouts.rm).map(_ => ())
     // runCmd(Seq("update", "--cpu-quota","4000", "--cpu-period","10000",id.asString), config.timeouts.rm).map(_ => ())
 
   def ps(filters: Seq[(String, String)] = Seq.empty, all: Boolean = false)(
