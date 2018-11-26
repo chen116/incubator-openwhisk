@@ -25,7 +25,7 @@ v5              ansible_host=v5
 kafkas
 
 [invokers]
-v6              ansible_host=v6
+v3              ansible_host=v3
 
 
 [db]
