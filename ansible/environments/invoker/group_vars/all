@@ -18,7 +18,6 @@ whisk_logs_dir: /tmp/wsklogs
 registry_storage_dir: "/"
 docker_registry: "{{ groups['registry'] | first }}:5000/"
 docker_dns: ""
-rt_runtime: 950000
 env_hosts_dir: "{{ playbook_dir }}/environments/distributed"
 
 registry:
