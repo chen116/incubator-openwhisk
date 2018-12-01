@@ -1,0 +1,8 @@
+; the first parameter in a host is the inventory_hostname
+
+; used for local actions only
+ansible ansible_connection=local
+
+[invokers]
+v5              ansible_host=v5
+
