@@ -265,7 +265,7 @@ redis:
   port: 6379
 
 linux:
-  version: 4.4.0-31
+  version: 4.4.0-139
 
 couchdb:
   version: 2.1
