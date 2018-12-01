@@ -92,7 +92,7 @@ object DockerContainer {
       // "10000",
       "--cpuset-cpus",
       "3",
-      // "--ulimit", "rtprio=99" ,"--cap-add","sys_nice" ,
+      "--ulimit", "rtprio=99" ,"--cap-add","sys_nice" ,
       "--cpu-shares",
       cpuShares.toString,
       "--memory",
