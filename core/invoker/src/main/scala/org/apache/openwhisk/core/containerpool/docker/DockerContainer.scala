@@ -89,7 +89,7 @@ object DockerContainer {
       "--cpu-quota",
       meow_quo.toString,
       "--cpu-period",
-      "1000000",
+      "10000",
       // "--cpu-rt-runtime","500000",
       "--cpuset-cpus",
       "3",
