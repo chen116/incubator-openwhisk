@@ -88,8 +88,8 @@ object DockerContainer {
     val args = Seq(
       // "--cpu-quota",
       // meow_quo.toString,
-      // "--cpu-period",
-      // "10000",
+      "--cpu-period",
+      "1000000",
       "--cpuset-cpus",
       "3",
       "--ulimit", "rtprio=99" ,"--cap-add","sys_nice" ,
