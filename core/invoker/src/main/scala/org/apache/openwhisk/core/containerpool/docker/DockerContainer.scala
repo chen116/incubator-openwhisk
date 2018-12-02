@@ -90,6 +90,7 @@ object DockerContainer {
       // meow_quo.toString,
       "--cpu-period",
       "1000000",
+      "--cpu-rt-runtime","500000",
       "--cpuset-cpus",
       "3",
       "--ulimit", "rtprio=99" ,"--cap-add","sys_nice" ,
