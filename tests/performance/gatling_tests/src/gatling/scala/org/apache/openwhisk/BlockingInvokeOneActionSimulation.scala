@@ -80,4 +80,8 @@ class BlockingInvokeOneActionSimulation extends Simulation {
     // Mark the build yellow, if there are failed requests. And red if both conditions fail.
     .assertions(details("Invoke action").failedRequests.count.lte(maxErrorsAllowed))
     .assertions(details("Invoke action").failedRequests.percent.lte(maxErrorsAllowedPercentage))
+    after {
+  println("Simulation is finished!")
+  }
+}
 }
