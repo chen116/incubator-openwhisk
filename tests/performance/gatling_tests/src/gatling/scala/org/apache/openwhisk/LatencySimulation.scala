@@ -118,8 +118,8 @@ class LatencySimulation extends Simulation {
         .toDouble
 
       agg
-        // .assertions(details(cur).responseTime.mean.lte(specificMeanResponseTime))
-        // .assertions(details(cur).responseTime.mean.lt(specificMaxMeanResponseTime))
+        .assertions(details(cur).responseTime.mean.lte(specificMeanResponseTime))
+        .assertions(details(cur).responseTime.mean.lt(specificMaxMeanResponseTime))
         // Mark the build yellow, if there are failed requests. And red if both conditions fail.
         .assertions(details(cur).failedRequests.count.lte(specificMaxErrorsAllowed))
         .assertions(details(cur).failedRequests.percent.lte(specificMaxErrorsAllowedPercentage))
