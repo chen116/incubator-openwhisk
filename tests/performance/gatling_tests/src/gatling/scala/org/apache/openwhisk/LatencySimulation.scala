@@ -18,7 +18,7 @@
 package org.apache.openwhisk
 
 import java.nio.charset.StandardCharsets
-// import java.util.Base64
+import java.util.Base64
 
 import org.apache.openwhisk.extension.whisk.Predef._
 import io.gatling.core.Predef._
