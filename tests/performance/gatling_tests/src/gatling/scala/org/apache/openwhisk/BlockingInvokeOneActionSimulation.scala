@@ -76,7 +76,7 @@ class BlockingInvokeOneActionSimulation extends Simulation {
     .protocols(openWhiskProtocol)
     // One failure will make the build yellow
     .assertions(details("Invoke action").requestsPerSec.gt(minimalRequestsPerSec))
-    // .assertions(details("Invoke action").requestsPerSec.gt(requestsPerSec))
+    .assertions(details("Invoke action").requestsPerSec.gt(requestsPerSec))
     // Mark the build yellow, if there are failed requests. And red if both conditions fail.
     .assertions(details("Invoke action").failedRequests.count.lte(maxErrorsAllowed))
     .assertions(details("Invoke action").failedRequests.percent.lte(maxErrorsAllowedPercentage))
