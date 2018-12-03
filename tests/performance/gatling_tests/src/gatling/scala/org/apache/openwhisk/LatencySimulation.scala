@@ -68,11 +68,11 @@ class LatencySimulation extends Simulation {
     "nodejs:default" -> (FileUtils
       .readFileToString(Resource.body("nodeJSAction.js").get.file, StandardCharsets.UTF_8), "latencyTest_node", ""),
     "python:default" -> (FileUtils
-      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "latencyTest_python", "")//,
-    // "swift:default" -> (FileUtils
-    //   .readFileToString(Resource.body("swiftAction.swift").get.file, StandardCharsets.UTF_8), "latencyTest_swift", ""),
-    // "java:default" -> (Base64.getEncoder.encodeToString(
-    //   FileUtils.readFileToByteArray(Resource.body("javaAction.jar").get.file)), "latencyTest_java", "JavaAction")
+      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "latencyTest_python", ""),
+    "swift:default" -> (FileUtils
+      .readFileToString(Resource.body("swiftAction.swift").get.file, StandardCharsets.UTF_8), "latencyTest_swift", ""),
+    "java:default" -> (Base64.getEncoder.encodeToString(
+      FileUtils.readFileToByteArray(Resource.body("javaAction.jar").get.file)), "latencyTest_java", "JavaAction")
   )
     .filterNot(e => excludedKinds.contains(e._1))
     .map {
