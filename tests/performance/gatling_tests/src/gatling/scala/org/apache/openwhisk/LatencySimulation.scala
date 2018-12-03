@@ -72,7 +72,8 @@ class LatencySimulation extends Simulation {
     // "swift:default" -> (FileUtils
     //   .readFileToString(Resource.body("swiftAction.swift").get.file, StandardCharsets.UTF_8), "latencyTest_swift", ""),
     // "java:default" -> (Base64.getEncoder.encodeToString(
-    //   FileUtils.readFileToByteArray(Resource.body("javaAction.jar").get.file)), "latencyTest_java", "JavaAction"))
+    //   FileUtils.readFileToByteArray(Resource.body("javaAction.jar").get.file)), "latencyTest_java", "JavaAction")
+  )
     .filterNot(e => excludedKinds.contains(e._1))
     .map {
       case (kind, (code, name, main)) =>
