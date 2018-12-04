@@ -90,15 +90,15 @@ class LatencySimulation extends Simulation {
           .action("${action._3}")
           .create(code, "${action._1}", "${action._4}"))
         .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke())
-        .exec { session => println(session); session }
+        // .exec { session => println(session); session }
         // .exec(openWhisk("Cold ${action._1} invocation response meow").authenticate(uuid, key).action("${action._3}").get())
         // .exec { session => println(session("responseBody").as[String]); session}
-        .repeat(1) {
+        .repeat(10) {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           pause(pauseBetweenInvokes.milliseconds)
             .exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke())
-            .exec { session => println(session); session }
+            // .exec { session => println(session); session }
 
         }
         .exec(openWhisk("Delete ${action._1} action").authenticate(uuid, key).action("${action._3}").delete())
