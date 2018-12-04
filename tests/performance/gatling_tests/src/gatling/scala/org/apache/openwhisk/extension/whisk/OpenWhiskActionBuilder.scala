@@ -115,7 +115,7 @@ case class OpenWhiskActionBuilderWithAction(private val uuid: Expression[String]
 
   /** Invoke the action. */
   def invoke() = {
-    OpenWhiskActionBuilder(http.post(path).queryParam("blocking", "false").basicAuth(uuid, key))
+    OpenWhiskActionBuilder(http.get(path).queryParam("blocking", "false").basicAuth(uuid, key))
   }
 }
 
