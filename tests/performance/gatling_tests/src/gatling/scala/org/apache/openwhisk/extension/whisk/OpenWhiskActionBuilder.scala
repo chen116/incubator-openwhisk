@@ -116,7 +116,7 @@ case class OpenWhiskActionBuilderWithAction(private val uuid: Expression[String]
   /** Invoke the action. */
   def invoke(meow: String) = {
     // val param = meow
-    OpenWhiskActionBuilder(http.post(path).queryParam("blocking", "true").formParam("itr",meow).basicAuth(uuid, key))
+    OpenWhiskActionBuilder(http.post(path).queryParam("blocking", "true").basicAuth(uuid, key))
   }
 }
 
