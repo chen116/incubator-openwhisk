@@ -44,7 +44,7 @@ class LatencySimulation extends Simulation {
 
   // Specify thresholds
   val meanResponseTime: Int = sys.env(MEAN_RESPONSE_TIME).toInt
-  val itr: String = sys.env(ITR).toString
+  val itr: String = sys.env("ITR").toString
   val maximalMeanResponseTime: Int = sys.env.getOrElse(MAX_MEAN_RESPONSE_TIME, meanResponseTime.toString).toInt
 
   val maxErrorsAllowed: Int = sys.env.getOrElse(MAX_ERRORS_ALLOWED, "0").toInt
