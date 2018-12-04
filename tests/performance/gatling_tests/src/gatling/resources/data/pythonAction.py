@@ -18,4 +18,5 @@ def main(args):
     for i in range(num):
         for j in range(10000):
             math.sqrt(j*(j+1));
+    print(str(time.time()-ts)+" "+str(num))
     return {"greeting": str(time.time()-ts)+" "+str(num)}
