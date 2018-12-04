@@ -32,6 +32,7 @@ import scala.concurrent.duration._
 class ColdBlockingInvokeSimulation extends Simulation {
   // Specify parameters for the run
   val host = sys.env("OPENWHISK_HOST")
+  val itr: String = sys.env("ITR").toString
 
   val users: Int = sys.env("USERS").toInt
   val codeSize: Int = sys.env.getOrElse("CODE_SIZE", "0").toInt
@@ -74,7 +75,7 @@ class ColdBlockingInvokeSimulation extends Simulation {
           // Cycle through the actions of this user, to not invoke the same action directly one after each other.
           // Otherwise there is the possiblity, that it is warm.
           repeat(actionsPerUser, "i") {
-            exec(openWhisk("Invoke action").authenticate(uuid, key).action(actionName).invoke())
+            exec(openWhisk("Invoke action").authenticate(uuid, key).action(actionName).invoke(itr))
           }
         }
         .rendezVous(users)

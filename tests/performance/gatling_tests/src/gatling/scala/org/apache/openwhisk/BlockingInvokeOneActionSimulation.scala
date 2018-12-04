@@ -34,6 +34,7 @@ class BlockingInvokeOneActionSimulation extends Simulation {
 
   // Specify authentication
   val Array(uuid, key) = sys.env("API_KEY").split(":")
+  val itr: String = sys.env("ITR").toString
 
   val connections: Int = sys.env("CONNECTIONS").toInt
   val seconds: FiniteDuration = sys.env.getOrElse("SECONDS", "10").toInt.seconds
@@ -61,11 +62,11 @@ class BlockingInvokeOneActionSimulation extends Simulation {
     }
     .rendezVous(connections)
     .during(5.seconds) {
-      exec(openWhisk("Warm containers up").authenticate(uuid, key).action(actionName).invoke())
+      exec(openWhisk("Warm containers up").authenticate(uuid, key).action(actionName).invoke(itr))
     }
     .rendezVous(connections)
     .during(seconds) {
-      exec(openWhisk("Invoke action").authenticate(uuid, key).action(actionName).invoke())
+      exec(openWhisk("Invoke action").authenticate(uuid, key).action(actionName).invoke(itr))
     }
     .rendezVous(connections)
     .doIf(_.userId == 1) {
