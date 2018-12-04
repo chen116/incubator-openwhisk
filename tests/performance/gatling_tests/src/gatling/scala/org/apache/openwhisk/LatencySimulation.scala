@@ -89,7 +89,7 @@ class LatencySimulation extends Simulation {
           .authenticate(uuid, key)
           .action("${action._3}")
           .create(code, "${action._1}", "${action._4}"))
-        .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke().check(bodyString.saveAs("responseBody")))
+        .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke().get().check(bodyString.saveAs("responseBody")))
         // .exec { session => println(session); session }
         .exec { session => println(session("responseBody").as[String]); session}
         .repeat(1) {
