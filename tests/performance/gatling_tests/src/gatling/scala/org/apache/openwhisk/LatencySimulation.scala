@@ -98,6 +98,8 @@ class LatencySimulation extends Simulation {
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           pause(pauseBetweenInvokes.milliseconds)
             .exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke())
+            .exec { session => println(session); session }
+
         }
         .exec(openWhisk("Delete ${action._1} action").authenticate(uuid, key).action("${action._3}").delete())
     }
