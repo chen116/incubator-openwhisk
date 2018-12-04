@@ -13,7 +13,7 @@
 import math
 import time
 def main(args):
-    num = int( 10**(0)  )
+    num = int( 10**(2)  )
     ts = time.time()
     for i in range(num):
         for j in range(10000):
