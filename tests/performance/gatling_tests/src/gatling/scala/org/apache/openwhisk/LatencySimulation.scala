@@ -89,8 +89,9 @@ class LatencySimulation extends Simulation {
           .authenticate(uuid, key)
           .action("${action._3}")
           .create(code, "${action._1}", "${action._4}"))
-        .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke().get().check(bodyString.saveAs("responseBody")))
+        .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke())
         // .exec { session => println(session); session }
+        .exec(openWhisk("Cold ${action._1} invocation response meow").authenticate(uuid, key).action("${action._3}").get().check(bodyString.saveAs("responseBody")))
         .exec { session => println(session("responseBody").as[String]); session}
         .repeat(1) {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
