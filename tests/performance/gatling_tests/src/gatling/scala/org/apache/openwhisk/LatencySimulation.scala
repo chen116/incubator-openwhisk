@@ -98,7 +98,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("2.177"))
+            exec(openWhisk("Warm ${action._1} invocation light1").authenticate(uuid, key).action("${action._3}").invoke("2.177"))
             // .exec { session => println(session); session }
 
         }
@@ -106,7 +106,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
+            exec(openWhisk("Warm ${action._1} invocation med").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
             // .exec { session => println(session); session }
 
         }
@@ -114,7 +114,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("2.177"))
+            exec(openWhisk("Warm ${action._1} invocation light2").authenticate(uuid, key).action("${action._3}").invoke("2.177"))
             // .exec { session => println(session); session }
 
         }
