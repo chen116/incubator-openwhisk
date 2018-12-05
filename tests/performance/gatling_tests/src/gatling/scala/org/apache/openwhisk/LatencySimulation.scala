@@ -94,7 +94,7 @@ class LatencySimulation extends Simulation {
         // .exec { session => println(session); session }
         // .exec(openWhisk("Cold ${action._1} invocation response meow").authenticate(uuid, key).action("${action._3}").get())
         // .exec { session => println(session("responseBody").as[String]); session}
-        .repeat(1) {
+        .repeat(100) {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           pause(pauseBetweenInvokes.milliseconds)
