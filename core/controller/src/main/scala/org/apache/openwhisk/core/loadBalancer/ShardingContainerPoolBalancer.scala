@@ -319,11 +319,11 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           {
             if ( meow_exectime.get(action.name.toString).get.last > 500 && meow_quo.get(action.name.toString).get.last.toInt < 10000)
             {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 1000).toString
+              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 100).toString
             }
             else if(meow_exectime.get(action.name.toString).get.last < 500 && meow_quo.get(action.name.toString).get.last.toInt > 1000)
             {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 1000).toString
+              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
 
             }
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
