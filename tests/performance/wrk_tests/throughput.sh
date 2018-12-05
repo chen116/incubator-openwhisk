@@ -41,7 +41,7 @@ docker run --pid=host --userns=host --rm -v "$currentDir":/data williamyeh/wrk \
   --connections "$concurrency" \
   --duration "$duration" \
   --header "Authorization: basic $encodedAuth" \
-  "$host/api/v1/namespaces/_/actions/$action?blocking=true" \
+  "https://$host:44/api/v1/namespaces/_/actions/$action?blocking=true" \
   --latency \
   --timeout 10s \
   --script post.lua
