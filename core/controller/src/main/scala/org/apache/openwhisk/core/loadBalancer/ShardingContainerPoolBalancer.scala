@@ -332,7 +332,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           else
           {
             meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[String]})
-            meow_quo.get(action.name.toString).get+= "5000"
+            meow_quo.get(action.name.toString).get+= "2000"
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
           }
         logging.info(this,s"exectime nextmeow $qtraceContext")
