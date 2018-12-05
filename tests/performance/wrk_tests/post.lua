@@ -15,3 +15,4 @@
 -- limitations under the License.
 --
 wrk.method = "POST"
+wrk.body = "itr: 2"
