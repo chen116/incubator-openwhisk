@@ -317,7 +317,6 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
         val qtraceContext: Option[Map[String, String]] = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
           {
-            meow_exectime.get(action.name.toString).get.last.toString
             if ( meow_exectime.get(action.name.toString).get.last < 500 )
             {
               meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 1000).toString
@@ -327,7 +326,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           }
           else
           {
-            meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[Long]})
+            meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[String]})
             meow_quo.get(action.name.toString).get+= "5000"
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
           }
