@@ -10,10 +10,13 @@
 #     print(greeting)
 #     return {"payload": greeting}
 
+
 import math
 import time
 def main(args):
-    num = int( 10**(float(args["itr"]))  )
+    num=1
+    if "itr" in args:
+        num = int( 10**(float(args["itr"]))  )
     ts = time.time()
     for i in range(num):
         for j in range(10000):
