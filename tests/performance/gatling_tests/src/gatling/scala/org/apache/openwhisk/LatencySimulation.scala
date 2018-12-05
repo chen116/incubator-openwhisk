@@ -102,47 +102,14 @@ class LatencySimulation extends Simulation {
             // .exec { session => println(session); session }
 
         }
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
-            exec(openWhisk("Warm ${action._1} invocation med2").authenticate(uuid, key).action("${action._3}").invoke("2.302"))
+        .repeat(30) {
+          // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
+          // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
+          // pause(pauseBetweenInvokes.milliseconds)
+            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("2.177"))
+            // .exec { session => println(session); session }
 
+        }
 
         // .exec(openWhisk("Delete ${action._1} action").authenticate(uuid, key).action("${action._3}").delete())
     }
