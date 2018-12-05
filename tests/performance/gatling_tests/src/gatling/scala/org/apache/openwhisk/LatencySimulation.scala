@@ -26,7 +26,7 @@ import io.gatling.core.session.Expression
 import io.gatling.core.util.Resource
 import org.apache.commons.io.FileUtils
 
-import scala.concurrent.duration._
+// import scala.concurrent.duration._
 
 class LatencySimulation extends Simulation {
   // Specify parameters for the run
