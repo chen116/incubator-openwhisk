@@ -300,7 +300,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         // var qtraceContext = None: Option[Map[String, String]]
         // qtraceContext = Some(Map("fff"->"qqq"))
-        val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"5000"))
+        val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
 
         var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
           qrootControllerIndex,qblocking,qcontent,qcause,qtraceContext)
