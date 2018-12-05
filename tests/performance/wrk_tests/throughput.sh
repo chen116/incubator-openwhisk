@@ -32,11 +32,29 @@ threads=${4:-4}
 duration=${5:-30s}
 
 # action="noopThroughput"
-action="helloMeow"
+action="woof"
 "$currentDir/../preparation/create.sh" "$host" "$credentials" "$action"
 
 # run throughput tests
 encodedAuth=$(echo "$credentials" | tr -d '\n' | base64 | tr -d '\n')
+docker run --pid=host --userns=host --rm -v "$currentDir":/data williamyeh/wrk \
+  --threads "$threads" \
+  --connections "$concurrency" \
+  --duration "$duration" \
+  --header "Authorization: basic $encodedAuth" \
+  "https://$host:443/api/v1/namespaces/_/actions/$action?blocking=true" \
+  --latency \
+  --timeout 10s \
+  --script post.lua
+docker run --pid=host --userns=host --rm -v "$currentDir":/data williamyeh/wrk \
+  --threads "$threads" \
+  --connections "$concurrency" \
+  --duration "$duration" \
+  --header "Authorization: basic $encodedAuth" \
+  "https://$host:443/api/v1/namespaces/_/actions/$action?blocking=true" \
+  --latency \
+  --timeout 10s \
+  --script post2.lua
 docker run --pid=host --userns=host --rm -v "$currentDir":/data williamyeh/wrk \
   --threads "$threads" \
   --connections "$concurrency" \
