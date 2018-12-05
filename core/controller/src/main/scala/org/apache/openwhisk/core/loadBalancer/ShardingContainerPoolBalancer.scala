@@ -310,9 +310,9 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           {
             0.toString
           }
-        val lastexec = action.name.toString
         logging.info(this,s"exectime lastmeow $lastexec")
 
+        
         val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
 
         var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
