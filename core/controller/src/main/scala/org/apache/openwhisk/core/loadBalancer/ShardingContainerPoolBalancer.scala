@@ -303,8 +303,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
 
 
-        val lastexec = meow_exectime.get(action.name.toString).get.last
-        logging.info(this,s"exectime lastmeow $lastexec")
+        // val lastexec = meow_exectime.get(action.name.toString).get.last
+        // logging.info(this,s"exectime lastmeow $lastexec")
 
         val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
 
