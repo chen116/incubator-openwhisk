@@ -84,13 +84,13 @@ class LatencySimulation extends Simulation {
   // Define scenario
   val test = scenario("Invoke one action after each other to test latency")
     .foreach(actions, "action") {
-      // val code: Expression[String] = "${action._2}"
+      val code: Expression[String] = "${action._2}"
       // exec(
       //   openWhisk("Create ${action._1} action")
       //     .authenticate(uuid, key)
       //     .action("${action._3}")
       //     .create(code, "${action._1}", "${action._4}"))
-        .exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke(itr))
+        exec(openWhisk("Cold ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke(itr))
         // .exec { session => println(session); session }
         // .exec(openWhisk("Cold ${action._1} invocation response meow").authenticate(uuid, key).action("${action._3}").get())
         // .exec { session => println(session("responseBody").as[String]); session}
