@@ -304,14 +304,14 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
 
 
-        val lastexec = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
-          {
-            meow_exectime.get(action.name.toString).get.last.toString
-          }else
-          {
-            5000.toString
-          }
-        logging.info(this,s"exectime lastmeow $lastexec")
+        // val lastexec = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
+        //   {
+        //     meow_exectime.get(action.name.toString).get.last.toString
+        //   }else
+        //   {
+        //     5000.toString
+        //   }
+        // logging.info(this,s"execquo lastmeow $lastexec")
 
 
         // val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
@@ -335,7 +335,8 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
             meow_quo.get(action.name.toString).get+= "2000"
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
           }
-        logging.info(this,s"exectime nextmeow $qtraceContext")
+        logging.info(this,s"execquo nextmeow $qtraceContext")
+        meow_quo.foreach({case (keyy, valuee) => logging.info(this,s"execquo meow $keyy $valuee")(tid)})   
 
 
           
