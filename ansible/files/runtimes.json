@@ -26,7 +26,13 @@
                 "attached": {
                     "attachmentName": "codefile",
                     "attachmentType": "text/plain"
-                }
+                },
+                "stemCells": [
+                    {
+                        "count": 1,
+                        "memory": "256 MB"
+                    }
+                ]
             },
             {
                 "kind": "nodejs:8",
@@ -69,13 +75,7 @@
                 "attached": {
                     "attachmentName": "codefile",
                     "attachmentType": "text/plain"
-                },
-                "stemCells": [
-                    {
-                        "count": 1,
-                        "memory": "256 MB"
-                    }
-                ]
+                }
             },
             {
                 "kind": "python:3",
