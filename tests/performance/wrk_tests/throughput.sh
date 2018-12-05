@@ -31,8 +31,8 @@ threads=${4:-4}
 # How long to run the test
 duration=${5:-30s}
 
-action="noopThroughput"
-# action="helloMeow"
+# action="noopThroughput"
+action="helloMeow"
 "$currentDir/../preparation/create.sh" "$host" "$credentials" "$action"
 
 # run throughput tests
