@@ -15,5 +15,5 @@
 -- limitations under the License.
 --
 wrk.method = "POST"
-wrk.body   = '{"itr":"2"}'
-wrk.headers["Content-Type"] = "application/json"
+-- wrk.body   = '{"itr":"2"}'
+-- wrk.headers["Content-Type"] = "application/json"
