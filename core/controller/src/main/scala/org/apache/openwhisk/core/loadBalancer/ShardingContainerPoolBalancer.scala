@@ -324,7 +324,6 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
             else if(meow_exectime.get(action.name.toString).get.last < 500 && meow_quo.get(action.name.toString).get.last.toInt > 100)
             {
               meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
-
             }
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
 
@@ -336,7 +335,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
           }
         logging.info(this,s"execquo nextmeow $qtraceContext")
-        meow_quo.foreach({case (keyy, valuee) => logging.info(this,s"execquo meow $keyy $valuee")(tid)})   
+        meow_quo.foreach({case (keyy, valuee) => logging.info(this,s"execquo meow $keyy $valuee")})   
 
 
           
