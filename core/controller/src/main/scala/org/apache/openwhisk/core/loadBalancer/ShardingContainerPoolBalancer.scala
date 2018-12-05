@@ -272,7 +272,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
          val meowp = action.annotations.meowp("asd","asdff")
         val mmm = meowp.toString
         logging.info(this,s"exectime woofy $mmm")
-         var newact = new ExecutableWhiskActionMetaData(namespace,name,exec,parameters,limits,version,publish,meowp)
+         var newaction = new ExecutableWhiskActionMetaData(namespace,name,exec,parameters,limits,version,publish,meowp)
         // var cm = Map[ParameterName, ParameterValue]()
         // var hey = new ParameterName("meow")
         // cm += ("meow"->"cat")
@@ -300,6 +300,12 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
 
         // var qtraceContext = None: Option[Map[String, String]]
         // qtraceContext = Some(Map("fff"->"qqq"))
+
+
+
+        val lastexec = meow_exectime.get(action.name.toString).get.last
+        logging.info(this,s"exectime lastmeow $lastexec")
+
         val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
 
         var newmsg = new ActivationMessage(qtransid,qaction,qrevision,quser,qactivationId,
@@ -307,7 +313,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         logging.info(this,s"exectime doofy $qtraceContext")
 //meow_quo
 
-        val entry = setupActivation(msg, newact, invoker)
+        val entry = setupActivation(msg, newaction, invoker)
         sendActivationToInvoker(messageProducer, newmsg, invoker).map { _ =>
           entry.promise.future
         
