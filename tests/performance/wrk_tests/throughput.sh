@@ -32,7 +32,7 @@ threads=${4:-4}
 duration=${5:-30s}
 
 action="noopThroughput"
-action="helloMeow"
+# action="helloMeow"
 "$currentDir/../preparation/create.sh" "$host" "$credentials" "$action"
 
 # run throughput tests
