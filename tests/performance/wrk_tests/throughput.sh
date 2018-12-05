@@ -33,7 +33,7 @@ duration=${5:-30s}
 
 # action="noopThroughput"
 action="helloMeow"
-"$currentDir/../preparation/create.sh" "$host" "$credentials" "$action"
+# "$currentDir/../preparation/create.sh" "$host" "$credentials" "$action"
 
 # run throughput tests
 encodedAuth=$(echo "$credentials" | tr -d '\n' | base64 | tr -d '\n')
