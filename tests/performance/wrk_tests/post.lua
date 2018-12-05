@@ -16,3 +16,4 @@
 --
 wrk.method = "POST"
 wrk.body = "itr=2"
+wrk.headers["Content-Type"] = "application/x-www-form-urlencoded"
