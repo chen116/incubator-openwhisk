@@ -19,7 +19,7 @@ edge
 gpu3              ansible_host=gpu3
 
 [kafkas]
-gpu2              ansible_host=gpu2
+gpu3              ansible_host=gpu3
 
 [zookeepers:children]
 kafkas
