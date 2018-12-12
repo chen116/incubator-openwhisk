@@ -229,7 +229,7 @@
     "blackboxes": [
         {
             "prefix": "openwhisk",
-            "name": "dockerskeleton",
+            "name": "chen116/wskcv",
             "tag": "latest"
         }
     ]
