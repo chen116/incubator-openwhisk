@@ -69,7 +69,13 @@
                 "attached": {
                     "attachmentName": "codefile",
                     "attachmentType": "text/plain"
-                }
+                },
+                "stemCells": [
+                    {
+                        "count": 2,
+                        "memory": "256 MB"
+                    }
+                ]
             },
             {
                 "kind": "python:3",
@@ -224,13 +230,7 @@
         {
             "prefix": "chen116",
             "name": "wskcv",
-            "tag": "latest",
-                "stemCells": [
-                    {
-                        "count": 2,
-                        "memory": "256 MB"
-                    }
-                ]
+            "tag": "latest"
         }
     ]
 }
