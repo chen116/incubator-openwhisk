@@ -69,7 +69,7 @@ class LatencySimulation extends Simulation {
     "nodejs:default" -> (FileUtils
       .readFileToString(Resource.body("nodeJSAction.js").get.file, StandardCharsets.UTF_8), "latencyTest_node", ""),
     "python:default" -> (FileUtils
-      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "pp", ""),
+      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "woofy", ""),
     "swift:default" -> (FileUtils
       .readFileToString(Resource.body("swiftAction.swift").get.file, StandardCharsets.UTF_8), "latencyTest_swift", ""),
     "java:default" -> (Base64.getEncoder.encodeToString(
