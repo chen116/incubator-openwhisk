@@ -326,16 +326,15 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
               meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 10).toString
             }
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
-            // if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 1024)
+            // if ( meow_exectime.get(action.name.toString).get.last > 500 && meow_quo.get(action.name.toString).get.last.toInt < 10000)
             // {
-            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 10).toString
+            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 100).toString
             // }
-            // else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 10)
+            // else if(meow_exectime.get(action.name.toString).get.last < 500 && meow_quo.get(action.name.toString).get.last.toInt > 100)
             // {
-            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 10).toString
+            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
             // }
             // Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
-
           }
           else
           {
