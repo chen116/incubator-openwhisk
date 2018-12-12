@@ -4,5 +4,7 @@
 ansible ansible_connection=local
 
 [invokers]
-v5              ansible_host=v5
+10.0.10.13              ansible_host=10.0.10.13
+10.0.10.22              ansible_host=10.0.10.22
+
 
