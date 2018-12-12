@@ -97,9 +97,13 @@ object DockerContainer {
       "--cpu-shares",
       cpuShares.toString,
       "--memory",
-      s"${memory.toMB}m",
+      s"1024m",
       "--memory-swap",
-      s"${memory.toMB}m",
+      s"1024m",
+      // "--memory",
+      // s"${memory.toMB}m",
+      // "--memory-swap",
+      // s"${memory.toMB}m",
       "--network",
       network) ++
       environmentArgs ++
