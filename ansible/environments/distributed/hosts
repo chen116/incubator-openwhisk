@@ -4,7 +4,7 @@
 ansible ansible_connection=local
 
 [registry]
-10.0.10.15              ansible_host=10.0.10.15
+reg              ansible_host=reg
 
 [edge]
 10.0.10.36              ansible_host=10.0.10.36
