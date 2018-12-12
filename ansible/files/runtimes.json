@@ -228,8 +228,8 @@
     },
     "blackboxes": [
         {
-            "prefix": "openwhisk",
-            "name": "chen116/wskcv",
+            "prefix": "chen116",
+            "name": "wskcv",
             "tag": "latest"
         }
     ]
