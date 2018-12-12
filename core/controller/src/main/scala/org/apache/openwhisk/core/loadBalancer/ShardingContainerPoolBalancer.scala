@@ -317,13 +317,13 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
         val qtraceContext: Option[Map[String, String]] = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
           {
-            if ( meow_exectime.get(action.name.toString).get.last > 500 && meow_quo.get(action.name.toString).get.last.toInt < 10000)
+            if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 128)
             {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 100).toString
+              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 10).toString
             }
-            else if(meow_exectime.get(action.name.toString).get.last < 500 && meow_quo.get(action.name.toString).get.last.toInt > 100)
+            else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 128)
             {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
+              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 10).toString
             }
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
 
@@ -331,7 +331,7 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
           else
           {
             meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[String]})
-            meow_quo.get(action.name.toString).get+= "5000"
+            meow_quo.get(action.name.toString).get+= "128"
             Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
           }
         logging.info(this,s"execquo nextmeow $qtraceContext")
