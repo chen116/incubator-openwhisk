@@ -4,10 +4,10 @@
 ansible ansible_connection=local
 
 [registry]
-gpu2              ansible_host=gpu2
+10.0.10.15              ansible_host=10.0.10.15
 
 [edge]
-gpu3              ansible_host=gpu3
+10.0.10.36              ansible_host=10.0.10.36
 
 [apigateway:children]
 edge
@@ -16,18 +16,17 @@ edge
 edge
 
 [controllers]
-gpu3              ansible_host=gpu3
+10.0.10.12              ansible_host=10.0.10.12
 
 [kafkas]
-hp4              ansible_host=hp4
+10.0.10.35              ansible_host=10.0.10.35
 
 [zookeepers:children]
 kafkas
 
 [invokers]
-hp4              ansible_host=hp4
-hp6              ansible_host=hp6
+10.0.10.13              ansible_host=10.0.10.13
 
 
 [db]
-gpu2               ansible_host=gpu2
+10.0.10.20               ansible_host=10.0.10.20
