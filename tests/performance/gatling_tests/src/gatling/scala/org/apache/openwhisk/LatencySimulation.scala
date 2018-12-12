@@ -69,7 +69,7 @@ class LatencySimulation extends Simulation {
     "nodejs:default" -> (FileUtils
       .readFileToString(Resource.body("nodeJSAction.js").get.file, StandardCharsets.UTF_8), "latencyTest_node", ""),
     "python:default" -> (FileUtils
-      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "tx", ""),
+      .readFileToString(Resource.body("pythonAction.py").get.file, StandardCharsets.UTF_8), "rx", ""),
     "swift:default" -> (FileUtils
       .readFileToString(Resource.body("swiftAction.swift").get.file, StandardCharsets.UTF_8), "latencyTest_swift", ""),
     "java:default" -> (Base64.getEncoder.encodeToString(
@@ -98,7 +98,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("5.0"))
+            exec(openWhisk("Warm ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("7.5"))
             // .exec { session => println(session); session }
 
         }
@@ -106,7 +106,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("med2 ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("7.5"))
+            exec(openWhisk("med2 ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("8.0"))
             // .exec { session => println(session); session }
 
         }
@@ -114,7 +114,7 @@ class LatencySimulation extends Simulation {
           // Add a pause of 100 milliseconds. Reason for this pause is, that collecting of logs runs asynchronously in
           // invoker. If this is not finished before the next request arrives, a new cold-start has to be done.
           // pause(pauseBetweenInvokes.milliseconds)
-            exec(openWhisk("ligh1 ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("5.0"))
+            exec(openWhisk("ligh1 ${action._1} invocation").authenticate(uuid, key).action("${action._3}").invoke("7.5"))
             // .exec { session => println(session); session }
 
         }
