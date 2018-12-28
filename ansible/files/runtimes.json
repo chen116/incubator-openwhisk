@@ -94,8 +94,8 @@
     },
     "blackboxes": [
         {
-            "prefix": "chen116",
-            "name": "wskcv",
+            "prefix": "openwhisk",
+            "name": "dockerskeleton",
             "tag": "latest"
         }
     ]
