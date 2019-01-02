@@ -315,44 +315,44 @@ class ShardingContainerPoolBalancer(config: WhiskConfig, controllerInstance: Con
         // logging.info(this,s"execquo lastmeow $lastexec")
 
 
-        // val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"10000"))
-        // val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"5000"))
 
-        val qtraceContext: Option[Map[String, String]] = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
-          {
-            // if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 1000)
-            // {
-            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 10).toString
-            // }
-            // else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 50)
-            // {
-            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 10).toString
-            // }
-            // else
-            // {
-            //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 0).toString
-            // }
-            // Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
-            if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 10000)
-            {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 100).toString
-            }
-            else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 100)
-            {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
-            }
-            else
-            {
-              meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 0).toString
-            }
-            Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
-          }
-          else
-          {
-            meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[String]})
-            meow_quo.get(action.name.toString).get+= "5000"
-            Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
-          }
+        val qtraceContext: Option[Map[String, String]] = Some(Map("quo"->"5000"))
+
+        // val qtraceContext: Option[Map[String, String]] = if (meow_exectime.keySet.exists(_ == action.name.toString)) 
+        //   {
+        //     // if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 1000)
+        //     // {
+        //     //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 10).toString
+        //     // }
+        //     // else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 50)
+        //     // {
+        //     //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 10).toString
+        //     // }
+        //     // else
+        //     // {
+        //     //   meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 0).toString
+        //     // }
+        //     // Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
+        //     if ( meow_exectime.get(action.name.toString).get.last > 1000 && meow_quo.get(action.name.toString).get.last.toInt < 10000)
+        //     {
+        //       meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt + 100).toString
+        //     }
+        //     else if(meow_exectime.get(action.name.toString).get.last < 1000 && meow_quo.get(action.name.toString).get.last.toInt > 100)
+        //     {
+        //       meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 100).toString
+        //     }
+        //     else
+        //     {
+        //       meow_quo.get(action.name.toString).get+= (meow_quo.get(action.name.toString).get.last.toInt - 0).toString
+        //     }
+        //     Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
+        //   }
+        //   else
+        //   {
+        //     meow_quo.getOrElseUpdate(action.name.toString,{ArrayBuffer.empty[String]})
+        //     meow_quo.get(action.name.toString).get+= "5000"
+        //     Some(Map("quo"->meow_quo.get(action.name.toString).get.last))
+        //   }
 
 
         logging.info(this,s"execquo nextmeow $qtraceContext")
