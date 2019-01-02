@@ -25,9 +25,9 @@ edge
 kafkas
 
 [invokers]
-169.62.86.218              ansible_host=169.62.86.218
+169.62.86.212              ansible_host=169.62.86.212
 
 
 
 [db]
-169.62.86.218               ansible_host=169.62.86.218
+169.62.86.212               ansible_host=169.62.86.212
