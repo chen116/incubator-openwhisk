@@ -35,34 +35,34 @@
     volumes: "{{ volumes }} + [ '{{ config_root_dir }}/erlang.cookie:/opt/couchdb/.erlang.cookie' ]"
   when: (db.instances|int >= 2)
 
-# - name: "(re)start CouchDB from '{{ couchdb_image }} ' "
-#   vars:
-#     couchdb_image: "{{ couchdb.docker_image | default('apache/couchdb:' ~ couchdb.version ) }}"
-#   docker_container:
-#     name: couchdb
-#     image: "{{ couchdb_image }}"
-#     state: started
-#     recreate: true
-#     restart_policy: "{{ docker.restart.policy }}"
-#     volumes: "{{ volumes }}"
-#     ports:
-#       - "{{ db.port }}:5984"
-#       - "4369:4369"
-#       - "9100:9100"
-#     env:
-#       COUCHDB_USER: "{{ db.credentials.admin.user }}"
-#       COUCHDB_PASSWORD: "{{ db.credentials.admin.pass }}"
-#       NODENAME: "{{ ansible_host }}"
-#       TZ: "{{ docker.timezone }}"
-#     pull: "{{ couchdb.pull_couchdb | default(true) }}"
+- name: "(re)start CouchDB from '{{ couchdb_image }} ' "
+  vars:
+    couchdb_image: "{{ couchdb.docker_image | default('apache/couchdb:' ~ couchdb.version ) }}"
+  docker_container:
+    name: couchdb
+    image: "{{ couchdb_image }}"
+    state: started
+    recreate: true
+    restart_policy: "{{ docker.restart.policy }}"
+    volumes: "{{ volumes }}"
+    ports:
+      - "{{ db.port }}:5984"
+      - "4369:4369"
+      - "9100:9100"
+    env:
+      COUCHDB_USER: "{{ db.credentials.admin.user }}"
+      COUCHDB_PASSWORD: "{{ db.credentials.admin.pass }}"
+      NODENAME: "{{ ansible_host }}"
+      TZ: "{{ docker.timezone }}"
+    pull: "{{ couchdb.pull_couchdb | default(true) }}"
 
-# - name: wait until CouchDB in this host is up and running
-#   uri:
-#     url: "{{ db.protocol }}://{{ ansible_host }}:{{ db.port }}/_utils/"
-#   register: result
-#   until: result.status == 200
-#   retries: 12
-#   delay: 5
+- name: wait until CouchDB in this host is up and running
+  uri:
+    url: "{{ db.protocol }}://{{ ansible_host }}:{{ db.port }}/_utils/"
+  register: result
+  until: result.status == 200
+  retries: 12
+  delay: 5
 
 - name: create '_users' database for singleton mode
   uri:
