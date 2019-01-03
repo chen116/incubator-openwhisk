@@ -19,7 +19,7 @@ edge
 169.62.86.213              ansible_host=169.62.86.213
 
 [kafkas]
-169.62.213              ansible_host=169.62.213
+169.62.86.222              ansible_host=169.62.86.222
 
 [zookeepers:children]
 kafkas
