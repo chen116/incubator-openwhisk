@@ -7,7 +7,7 @@ ansible ansible_connection=local
 reg              ansible_host=reg
 
 [edge]
-edge               ansible_host=edge
+edg               ansible_host=edg
 
 [apigateway:children]
 edge
