@@ -56,13 +56,13 @@
       TZ: "{{ docker.timezone }}"
     pull: "{{ couchdb.pull_couchdb | default(true) }}"
 
-- name: wait until CouchDB in this host is up and running
-  uri:
-    url: "{{ db.protocol }}://{{ ansible_host }}:{{ db.port }}/_utils/"
-  register: result
-  until: result.status == 200
-  retries: 12
-  delay: 5
+# - name: wait until CouchDB in this host is up and running
+#   uri:
+#     url: "{{ db.protocol }}://{{ ansible_host }}:{{ db.port }}/_utils/"
+#   register: result
+#   until: result.status == 200
+#   retries: 12
+#   delay: 5
 
 - name: create '_users' database for singleton mode
   uri:
