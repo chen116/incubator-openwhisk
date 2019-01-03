@@ -30,4 +30,4 @@ invoker              ansible_host=invoker
 
 
 [db]
-invoker               ansible_host=invoker
+kafdb               ansible_host=kafdb
