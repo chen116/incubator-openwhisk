@@ -19,7 +19,7 @@ edge
 cont              ansible_host=cont
 
 [kafkas]
-kafdb              ansible_host=kafdb
+kaf              ansible_host=kaf
 
 [zookeepers:children]
 kafkas
@@ -30,4 +30,4 @@ invoker              ansible_host=invoker
 
 
 [db]
-kafdb               ansible_host=kafdb
+couch               ansible_host=couch
