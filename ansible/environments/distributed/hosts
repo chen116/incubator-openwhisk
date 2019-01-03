@@ -10,10 +10,10 @@ reg              ansible_host=reg
 edg               ansible_host=edg
 
 [apigateway:children]
-edg
+edge
 
 [redis:children]
-edg
+edge
 
 [controllers]
 cont              ansible_host=cont
