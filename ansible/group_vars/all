@@ -267,7 +267,7 @@ redis:
   password: openwhisk 
 
 linux:
-  version: 4.4.0-137
+  version: 4.4.0-135
 
 couchdb:
   version: 2.1
