@@ -4,10 +4,10 @@
 ansible ansible_connection=local
 
 [registry]
-169.62.86.212              ansible_host=169.62.86.212
+reg              ansible_host=reg
 
 [edge]
-169.62.86.213               ansible_host=169.62.86.213
+edg               ansible_host=edg
 
 [apigateway:children]
 edge
@@ -16,18 +16,18 @@ edge
 edge
 
 [controllers]
-169.62.86.213              ansible_host=169.62.86.213
+cont              ansible_host=cont
 
 [kafkas]
-169.62.86.222              ansible_host=169.62.86.222
+kaf              ansible_host=kaf
 
 [zookeepers:children]
 kafkas
 
 [invokers]
-169.62.86.222              ansible_host=169.62.86.222
+invoker              ansible_host=invoker
 
 
 
 [db]
-169.62.86.222               ansible_host=169.62.86.222
+couch               ansible_host=couch
